@@ -1,0 +1,6 @@
+.idea/
+build/
+*.iml
+__pycache__/
+tg/*.mp4
+
