@@ -178,7 +178,7 @@ def get_view_by_class_name(device, class_name):
 
 def get_view_info(view):
     info = view.info
-    print('获取元素信息:', info)
+    # print('获取元素信息:', info)
     return info
 
 

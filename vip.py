@@ -51,6 +51,9 @@ if __name__ == '__main__':
             if i == 2:
                 date = get_view_info(text_views[i])
                 text_map['vip_date'] = date['text']
+        # 打印会员id和有效期
+        print('会员编号:', text_map['vip_no'])
+        print('会员有效期:', text_map['vip_date'])
         # 将 text_map 写入文件
         write_map_to_file('log/vip_info.txt', text_map)
         # 退出
