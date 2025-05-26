@@ -32,10 +32,13 @@ if __name__ == '__main__':
         click_button_by_id(d, package_name + ':id/ett')
         # 点击会员中心图标
         click_button_by_id(d, package_name + ':id/a9f')
+        # 获取有效期区域元素 tabVIP
+        tab_vip = get_view_by_id(d, 'tabVIP')
+        # 等待tabVIP元素加载完成
+        tab_vip.wait()
         # 截图
         screen_shot(d, 'checkin_vip', 10)
-        # 获取有效期
-        tab_vip = get_view_by_id(d, 'tabVIP')
+        # 获取有效期区域子元素
         get_view_info(tab_vip)
         # 得到所有TextView
         text_views = get_view_by_class_name(d, 'android.widget.TextView')
