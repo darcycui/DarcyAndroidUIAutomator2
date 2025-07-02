@@ -1,5 +1,16 @@
-from file_util import write_map_to_file
-from uiautomator2_util import *
+import string
+from datetime import datetime
+
+from utils.date_time_util import delay
+from utils.uiautomator2.click_view import click_button_by_id
+from utils.uiautomator2.apps import start_app, stop_app
+from utils.uiautomator2.connect import connect_device, quite
+from utils.uiautomator2.device import turn_screen_on, turn_screen_off
+from utils.file_util import write_map_to_file
+from utils.uiautomator2.get_view import get_view_by_class_name, get_view_by_id
+from utils.uiautomator2.press_key import press_back
+from utils.uiautomator2.screenshot import screen_shot
+from utils.uiautomator2.view_info import get_view_info
 
 device_id_samsang = 'RFCW8014R4E'
 package_name = 'com.kugou.android.lite'
@@ -21,7 +32,7 @@ if __name__ == '__main__':
         click_button_by_id(d, package_name + ':id/eu0')
         # 播放页播放按钮 开始播放
         click_button_by_id(d, package_name + ':id/ezj')
-        time.sleep(6)
+        delay(6)
         # 播放页播放按钮 暂停播放
         click_button_by_id(d, package_name + ':id/ezj')
         # 结束录屏
@@ -49,21 +60,28 @@ if __name__ == '__main__':
         for i in range(len(text_views)):
             # print('i=', i)
             if i == 1:
-                text = get_view_info(text_views[i])
-                text_map['vip_no'] = text['text']
+                text_info = get_view_info(text_views[i])
+                text_map['vip_no'] = text_info['text']
             if i == 2:
-                date = get_view_info(text_views[i])
-                text_map['vip_date'] = date['text']
+                date_info = get_view_info(text_views[i])
+                text_map['vip_date'] = date_info['text']
         # 打印会员id和有效期
         print('会员编号:', text_map['vip_no'])
-        print('会员有效期:', text_map['vip_date'])
+        original_string: string = text_map['vip_date']
+        vip_date_string: string = original_string.split(' ')[-1]
+        vip_date: datetime = datetime.strptime(vip_date_string, '%Y-%m-%d')
+        current_date: datetime = datetime.now()
+        if vip_date >= current_date:
+            period = (vip_date - current_date).days
+            print(f"会员有效期: {vip_date.strftime('%Y-%m-%d')} 还剩余 {period} 天")
+        else:
+            print("*************************会员已过期*************************")
         # 将 text_map 写入文件
         write_map_to_file('log/vip_info.txt', text_map)
         # 退出
         quite(d)
         # 息屏
         turn_screen_off(d)
-        print('++++++++++++++++++++vip success 成功++++++++++++++++++++')
+        print('++++++++++++++++++++ 今日vip签到: 成功 ++++++++++++++++++++')
     except Exception as e:
-        print(f'--------------------vip failed: 失败 {e}--------------------')
-
+        print(f'-------------------- 今日vip签到: 失败 {e} --------------------')

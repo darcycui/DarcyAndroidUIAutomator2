@@ -4,3 +4,5 @@ build/
 __pycache__/
 tg/*.mp4
 
+screen_shot/
+screen_record/
