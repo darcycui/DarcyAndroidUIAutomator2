@@ -2,12 +2,12 @@ import string
 from datetime import datetime
 
 from utils.date_time_util import delay
-from utils.uiautomator2.click_view import click_button_by_id
+from utils.uiautomator2.view_click import click_view_by_id
 from utils.uiautomator2.apps import start_app, stop_app
 from utils.uiautomator2.connect import connect_device, quite
 from utils.uiautomator2.device import turn_screen_on, turn_screen_off
 from utils.file_util import write_map_to_file
-from utils.uiautomator2.get_view import get_view_by_class_name, get_view_by_id
+from utils.uiautomator2.view_get import get_view_by_class_name, get_view_by_id
 from utils.uiautomator2.press_key import press_back
 from utils.uiautomator2.screenshot import screen_shot
 from utils.uiautomator2.view_info import get_view_info
@@ -29,20 +29,20 @@ if __name__ == '__main__':
         # 再启动app
         start_app(d, package_name)
         # 首页播放按钮
-        click_button_by_id(d, package_name + ':id/eu0')
+        click_view_by_id(d, package_name + ':id/eu0')
         # 播放页播放按钮 开始播放
-        click_button_by_id(d, package_name + ':id/ezj')
+        click_view_by_id(d, package_name + ':id/ezj')
         delay(6)
         # 播放页播放按钮 暂停播放
-        click_button_by_id(d, package_name + ':id/ezj')
+        click_view_by_id(d, package_name + ':id/ezj')
         # 结束录屏
         # screen_record_stop(record_process)
         # 返回上一页
         press_back(d)
         # 点击我的按钮
-        click_button_by_id(d, package_name + ':id/ett')
+        click_view_by_id(d, package_name + ':id/ett')
         # 点击会员中心图标
-        click_button_by_id(d, package_name + ':id/a9f')
+        click_view_by_id(d, package_name + ':id/a9f')
         # 获取有效期区域元素 tabVIP
         tab_vip = get_view_by_id(d, 'tabVIP')
         # 等待tabVIP元素加载完成

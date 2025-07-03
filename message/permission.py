@@ -2,7 +2,8 @@
 from utils.date_time_util import delay
 import uiautomator2 as u2
 
-def grant_permissions(device: u2.Device, app_name:str):
+
+def grant_app_permissions(device: u2.Device, app_name: str):
     print(f'{app_name} 授权权限')
     permissions = [
         'android.permission.POST_NOTIFICATIONS',

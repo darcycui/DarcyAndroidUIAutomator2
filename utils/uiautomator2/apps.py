@@ -19,3 +19,4 @@ def clear_app_data(device: u2.Device, package_name: str):
     print('清除应用数据:', package_name)
     device.app_clear(package_name)
     delay(3)
+    print('清除应用数据:完成')
