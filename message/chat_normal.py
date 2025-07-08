@@ -1,14 +1,12 @@
-import sys
-
 import uiautomator2 as u2
 
+from message.goback import go_back
 from utils.date_time_util import delay
-from utils.uiautomator2.view_click import click_view_by_text, click_view_by_class_name, click_view_by_description
-from utils.uiautomator2.view_exists import exists_by_description
-from utils.uiautomator2.view_get import get_view_by_text
 from utils.uiautomator2.input import input_text
-from utils.uiautomator2.press_key import press_menu, press_search
-from utils.uiautomator2.view_wait import wait_view_text_by_text
+from utils.uiautomator2.press_key import press_menu, press_search, press_back
+from utils.uiautomator2.view_click import click_view_by_text, click_view_by_class_name, click_view_by_description
+from utils.uiautomator2.view_exists import exists_by_description, exists_by_text
+from utils.uiautomator2.view_get import get_view_by_text
 
 
 def start_chat(device: u2.Device, contact_name: str) -> bool:

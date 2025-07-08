@@ -1,12 +1,13 @@
 import uiautomator2 as u2
 
+from message.goback import go_back
 from utils.date_time_util import delay
-from utils.uiautomator2.view_click import click_view_by_text, click_view_by_description
-from utils.uiautomator2.view_get import get_view_by_text, get_view_by_class_name
-from utils.uiautomator2.view_info import get_view_info, is_view_checked
+from utils.uiautomator2.view_click import click_view_by_text
+from utils.uiautomator2.view_get import get_view_by_class_name
+from utils.uiautomator2.view_info import is_view_checked
 
 
-def secret_chat_on(device: u2.Device, contact_name: str) -> bool:
+def secure_chat_on(device: u2.Device, contact_name: str) -> bool:
     # 点击头像
     click_view_by_text(device, contact_name)
     delay(3)
@@ -28,7 +29,7 @@ def secret_chat_on(device: u2.Device, contact_name: str) -> bool:
         return False
 
 
-def secret_chat_off(device: u2.Device, contact_name: str) -> bool:
+def secure_chat_off(device: u2.Device, contact_name: str) -> bool:
     # 点击头像
     click_view_by_text(device, contact_name)
     delay(3)
@@ -49,6 +50,3 @@ def secret_chat_off(device: u2.Device, contact_name: str) -> bool:
         return False
 
 
-def go_back(device: u2.Device):
-    # 返回聊天页
-    click_view_by_description(device, 'Go back')

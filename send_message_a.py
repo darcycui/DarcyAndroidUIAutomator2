@@ -1,10 +1,10 @@
 import sys
 
-from message.contact import start_chat
+from message.chat_normal import start_chat
 from message.history import clear_history
 from message.login import login
 from message.permission import grant_app_permissions
-from message.secret_chat import secret_chat_on, secret_chat_off
+from message.chat_secure import secure_chat_on, secure_chat_off
 from message.send import send_text_message, send_image
 from utils.date_time_util import delay
 from utils.uiautomator2.apps import stop_app, clear_app_data, start_app
@@ -39,7 +39,7 @@ if __name__ == '__main__':
         # 清空历史
         clear_history(device)
         # 开启密聊
-        secret_chat_on(device, CHAT_USER_NAME)
+        secure_chat_on(device, CHAT_USER_NAME)
         # 发送 on 消息
         send_text_message(device, 'OnOnOn')
         # 收起键盘
@@ -48,7 +48,7 @@ if __name__ == '__main__':
         # 发送图片
         send_image(device)
         # 关闭密聊
-        secret_chat_off(device)
+        secure_chat_off(device)
         # 发送 off 消息
         send_text_message(device, 'OffOffOff')
         # 收起键盘

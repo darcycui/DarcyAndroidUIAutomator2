@@ -1,6 +1,6 @@
 import unittest
 
-from tests.data.TestData import DEVICE_ID
+from tests.data.TestData import DEVICE_ID, CHAT_USER_NAME
 from utils.uiautomator2.connect import connect_device
 from utils.uiautomator2.view_exists import exists_by_text, exists_by_text_contains, exists_by_description, exists_by_id
 
@@ -16,16 +16,23 @@ class TestViewExists(unittest.TestCase):
         print("tearDown")
 
     def test_exists_by_text(self):
-        b: bool = exists_by_text(self.device, "Telegram")
-        self.assertEqual(True, b, "Telegram 不存在")
+        target_text = "forTest"
+        target_text = "Gallery"
+        target_text = "You joined the secret chat"
+        b: bool = exists_by_text(self.device, target_text)
+        self.assertEqual(True, b, f"{target_text} 不存在")
 
     def test_exists_by_text_contains(self):
-        b: bool = exists_by_text_contains(self.device, "Telegram")
-        self.assertEqual(True, b, "*Telegram* 不存在")
+        target_text = "Telegram"
+        target_text = "You joined the secret chat"
+        target_text = CHAT_USER_NAME
+        b: bool = exists_by_text_contains(self.device, target_text)
+        self.assertEqual(True, b, f"{target_text} 不存在")
 
     def test_exists_by_description(self):
-        b: bool = exists_by_description(self.device, "Search")
-        self.assertEqual(True, b, "Search 不存在")
+        target_text = "Instant camera"
+        b: bool = exists_by_description(self.device, target_text)
+        self.assertEqual(True, b, f"{target_text} 不存在")
 
     def test_exists_by_id(self):
         b: bool = exists_by_id(self.device, "android:id/navigationBarBackground")
