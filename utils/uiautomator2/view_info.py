@@ -58,12 +58,28 @@ def get_view_class_name(view: u2.UiObject) -> str:
     print('获取元素类名:', class_name)
     return class_name
 
+
 def is_view_checked(view: u2.UiObject) -> bool:
     checked = get_view_info(view)['checked']
     print('获取元素是否选中:', checked)
     return checked
 
+
 def is_view_selected(view: u2.UiObject) -> bool:
     selected = get_view_info(view)['selected']
     print('获取元素是否被选中:', selected)
     return selected
+
+
+def get_view_center_x(view: u2.UiObject):
+    bounds: dict = get_view_info(view)['bounds']
+    start_x = bounds['left']
+    end_x = bounds['right']
+    return int((start_x + end_x) / 2)
+
+
+def get_view_center_y(view: u2.UiObject):
+    bounds: dict = get_view_info(view)['bounds']
+    start_y = bounds['top']
+    end_y = bounds['bottom']
+    return int((start_y + end_y) / 2)

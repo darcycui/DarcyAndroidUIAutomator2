@@ -1,11 +1,12 @@
-from utils.uiautomator2.press_key import press_back, press_menu
+import uiautomator2 as u2
+
+from utils.date_time_util import delay
+from utils.uiautomator2.input import input_text
 from utils.uiautomator2.swipe import swipe_up
 from utils.uiautomator2.view_click import click_view_by_description, click_view_by_text, click_view_by_class_name, \
-    click_view
-from utils.uiautomator2.view_get import get_view_by_class_name, get_view_by_description, get_view_by_text
-from utils.date_time_util import get_current_time, delay
-from utils.uiautomator2.input import input_text
-import uiautomator2 as u2
+    click_view, click_view_by_text_contains
+from utils.uiautomator2.view_get import get_view_by_class_name
+from utils.uiautomator2.view_list_get import get_view_list_by_text
 
 
 def send_text_message(device: u2.Device, message_text: str) -> bool:
@@ -19,7 +20,7 @@ def send_text_message(device: u2.Device, message_text: str) -> bool:
             click_view_by_description(device, 'Send')
             delay(2)
         # 收起键盘
-        press_back(device)
+        # press_back(device)
         delay(3)
         print(f'send text message success:{message_text}')
         return True
@@ -97,15 +98,15 @@ def send_file(device: u2.Device, root_name: str) -> bool:
             # 打开根目录
             click_view_by_description(device, '显示根目录')
             # 选中根目录
-            root_items = get_view_by_text(device, root_name)
+            root_items = get_view_list_by_text(device, root_name)
             click_view(root_items[len(root_items) - 1])
             # 选中 "其他"目录
             click_view_by_text(device, '其他')
             # 选中 forTest
             click_view_by_text(device, '_forTestFile')  # _forTestFile
-            # 发送文件 file, 3_测试文档-docx.docx
+            # 发送文件 file, 测试文档
             print('发送文件')
-            click_view_by_text(device, '3_测试文档-docx.docx')
+            click_view_by_text_contains(device, '测试文档')
             delay(3)
         print(f'send file success')
         return True

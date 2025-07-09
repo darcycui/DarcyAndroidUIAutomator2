@@ -10,7 +10,7 @@ from utils.file_util import write_map_to_file
 from utils.uiautomator2.view_get import get_view_by_class_name, get_view_by_id
 from utils.uiautomator2.press_key import press_back
 from utils.uiautomator2.screenshot import screen_shot
-from utils.uiautomator2.view_info import get_view_info
+from utils.uiautomator2.view_info import get_view_info, get_view_text
 
 device_id_samsang = 'RFCW8014R4E'
 package_name = 'com.kugou.android.lite'
@@ -52,19 +52,10 @@ if __name__ == '__main__':
         # 获取有效期区域子元素
         get_view_info(tab_vip)
         # 得到所有TextView
-        text_views = get_view_by_class_name(d, 'android.widget.TextView')
+        no_view = get_view_by_class_name(d, 'android.widget.TextView', 1)
+        date_view = get_view_by_class_name(d, 'android.widget.TextView', 2)
         # 创建映射
-        text_map = {}
-
-        # for循环遍历
-        for i in range(len(text_views)):
-            # print('i=', i)
-            if i == 1:
-                text_info = get_view_info(text_views[i])
-                text_map['vip_no'] = text_info['text']
-            if i == 2:
-                date_info = get_view_info(text_views[i])
-                text_map['vip_date'] = date_info['text']
+        text_map = {'vip_no': get_view_text(no_view), 'vip_date': get_view_text(date_view)}
         # 打印会员id和有效期
         print('会员编号:', text_map['vip_no'])
         original_string: string = text_map['vip_date']

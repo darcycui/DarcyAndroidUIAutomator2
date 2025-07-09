@@ -11,7 +11,7 @@ def secure_chat_on(device: u2.Device, contact_name: str) -> bool:
     # 点击头像
     click_view_by_text(device, contact_name)
     delay(3)
-    switch_view = get_view_by_class_name(device, 'android.widget.Switch')[3]
+    switch_view = get_view_by_class_name(device, 'android.widget.Switch', 3)
     if is_view_checked(switch_view):
         print('密聊已开启,无需点击')
         go_back(device)
@@ -33,7 +33,7 @@ def secure_chat_off(device: u2.Device, contact_name: str) -> bool:
     # 点击头像
     click_view_by_text(device, contact_name)
     delay(3)
-    switch_view = get_view_by_class_name(device, 'android.widget.Switch')[3]
+    switch_view = get_view_by_class_name(device, 'android.widget.Switch', 3)
     if not is_view_checked(switch_view):
         print('密聊已关闭,无需点击')
         go_back(device)

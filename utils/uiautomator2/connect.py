@@ -1,3 +1,4 @@
+import logging
 import time
 
 import uiautomator2 as u2
@@ -13,8 +14,10 @@ def connect_device(device_id: str) -> u2.Device:
     print('连接设备:', device_id)
     # 连接设备
     device = u2.connect(device_id)
+    # 开启 uiautomator2 调试日志
+    logging.basicConfig(level=logging.DEBUG)
     # 格式化log
-    # u2.enable_pretty_logging()
+    u2.enable_pretty_logging()
     # 打印出代码背后的HTTP请求
     # device.debug = True
     # 设置元素查找等待时间(默认20s)

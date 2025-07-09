@@ -2,7 +2,7 @@ import unittest
 
 from message.send import send_image, send_video, send_file
 from message.take import send_take_image, send_take_video, send_take_audio, send_take_round_video
-from tests.data.TestData import DEVICE_ID
+from tests.data.TestData import DEVICE_ID, ROOT_NAME
 from utils.uiautomator2.connect import connect_device
 
 

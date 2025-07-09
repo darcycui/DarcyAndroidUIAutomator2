@@ -9,7 +9,8 @@ from utils.uiautomator2.view_get import get_view_by_class_name, get_view_by_text
 from utils.uiautomator2.input import input_text
 from utils.uiautomator2.notification import open_notification, close_notification
 from utils.uiautomator2.press_key import press_home
-from utils.uiautomator2.view_wait import wait_view_text_by_text_contains
+from utils.uiautomator2.view_list_get import get_view_list_by_class_name
+from utils.uiautomator2.view_wait import wait_view_text_by_text_contains, wait_view_text_by_text
 
 
 # 登录
@@ -26,8 +27,10 @@ def login(
         # 打开.web app
         start_app(device, package_name_web_)
         # 等待连接成功
-        get_view_by_text(device, 'Telegram').wait()
-        # 按
+        delay(10)
+        # wait_view_text_by_text(device, 'Telegram')
+        print('web_app 连接成功')
+        # 按Home键
         press_home(device)
         # 打开 app
         start_app(device, package_name_)
@@ -36,23 +39,26 @@ def login(
         click_view_by_text(device, 'Start Messaging')
         delay(3)
         # 找到手机号输入框
-        phone_edit_text_list = get_view_by_class_name(device, 'android.widget.EditText')
-        if len(phone_edit_text_list) < 2:
+        country_edit_text = get_view_by_class_name(device, 'android.widget.EditText', position = 0)
+        phone_edit_text = get_view_by_class_name(device, 'android.widget.EditText', position = 1)
+        if country_edit_text is None or phone_edit_text is None:
             print('未找到手机号输入框')
             sys.exit(-1)
-        input_text(device, phone_edit_text_list[0], country_number_)
-        input_text(device, phone_edit_text_list[1], phone_number_)
+        input_text(device, country_edit_text, country_number_)
+        input_text(device, phone_edit_text, phone_number_)
         # 点击箭头
         click_view_by_description(device, 'Done')
         # 点击Yes
         click_view_by_text(device, 'Yes')
         # 等待页面切换到验证码页面
-        get_view_by_text(device, 'Check your Telegram messages').wait()
+        delay(10)
+        # wait_view_text_by_text(device, 'Check your Telegram messages')
+        print('验证码已发送')
         delay(3)
         # 打开.web app
         start_app(device, package_name_web_)
         # 等待连接成功
-        get_view_by_text(device, 'Telegram').wait()
+        wait_view_text_by_text(device, 'Telegram')
         delay(3)
         # 打开 app
         start_app(device, package_name_)
@@ -71,7 +77,7 @@ def login(
         # start_app(device, package_name)
 
         # 找到验证码输入框
-        code_edit_text_list = get_view_by_class_name(device, 'android.widget.EditText')
+        code_edit_text_list = get_view_list_by_class_name(device, 'android.widget.EditText')
         print('输入框个数-->', len(code_edit_text_list), '验证码位数-->', len(verify_code_numbers))
         if len(code_edit_text_list) <= 0 or len(code_edit_text_list) != len(verify_code_numbers):
             print('输入框个数与验证码位数不一致')

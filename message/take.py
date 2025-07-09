@@ -4,7 +4,7 @@ from utils.date_time_util import delay
 from utils.uiautomator2.view_click import click_view_by_description, click_view
 from utils.uiautomator2.view_exists import exists_by_description
 from utils.uiautomator2.view_get import get_view_by_description
-from utils.uiautomator2.view_long_click import long_click_view_by_description
+from utils.uiautomator2.view_long_click import long_click_view_by_description, long_click_by_touch, long_click_by_swipe
 
 
 def send_take_image(device: u2.Device):
@@ -74,8 +74,10 @@ def send_take_audio(device: u2.Device):
             if not exists_by_description(device, 'Record voice message'):
                 click_view_by_description(device,'Record video message')
             # 长按录音按钮
-            print('长按录制按钮')
-            long_click_view_by_description(device, 'Record voice message', 3.5)
+            print('长按录音按钮')
+            # long_click_view_by_description(device, 'Record voice message', 3.0)
+            # long_click_by_touch(device, get_view_by_description(device, 'Record voice message'), 3.0)
+            long_click_by_swipe(device, get_view_by_description(device, 'Record voice message'), 1.0)
             delay(3)
         print(f'take audio success')
         return True
@@ -92,7 +94,9 @@ def send_take_round_video(device: u2.Device):
                 click_view_by_description(device,'Record voice message')
             # 长按录像按钮
             print('长按录像按钮')
-            long_click_view_by_description(device, 'Record video message', 3.5)
+            # long_click_view_by_description(device, 'Record video message', 3.5)
+            # long_click_by_touch(device, get_view_by_description(device, 'Record voice message'), 3.0)
+            long_click_by_swipe(device, get_view_by_description(device, 'Record video message'), 1.0)
             delay(3)
         print(f'take audio success')
         return True

@@ -1,9 +1,14 @@
 import uiautomator2 as u2
 
 
-def swipe(device: u2.Device, start_x: int, start_y: int, end_x: int, end_y: int, duration: float = 0.5):
+def swipe_duration(device: u2.Device, start_x: int, start_y: int, end_x: int, end_y: int, duration: float = 0.5):
     print('滑动屏幕:', start_x, start_y, end_x, end_y)
-    device.swipe(start_x, start_y, end_x, end_y, duration)
+    device.swipe(start_x, start_y, end_x, end_y, duration=duration)
+
+
+def swipe_steps(device: u2.Device, start_x: int, start_y: int, end_x: int, end_y: int, steps: int = 10):
+    print('滑动屏幕:', start_x, start_y, end_x, end_y)
+    device.swipe(start_x, start_y, end_x, end_y, steps=steps)
 
 
 def swipe_up(device: u2.Device, duration: float = 0.5):
