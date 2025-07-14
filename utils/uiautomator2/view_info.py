@@ -30,8 +30,11 @@ import uiautomator2 as u2
 #     "checkable": false
 # }
 def get_view_info(view: u2.UiObject) -> dict:
+    if view is None:
+        print('元素不存在')
+        return {}
     info = view.info
-    print('获取元素信息:', info)
+    print('元素信息:', info)
     return info
 
 

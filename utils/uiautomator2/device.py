@@ -19,3 +19,15 @@ def turn_screen_on(device: u2.Device):
 def turn_screen_off(device: u2.Device):
     print('屏幕熄灭')
     device.screen_off()
+
+
+def get_device_info(device: u2.Device) -> dict:
+    return device.info
+
+
+def get_device_name(device: u2.Device) -> str:
+    return '设备名称:' + get_device_info(device)['productName']
+
+
+def get_device_sdk(device: u2.Device) -> int:
+    return int(get_device_info(device)['sdkInt'])

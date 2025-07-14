@@ -1,3 +1,5 @@
+import sys
+
 import uiautomator2 as u2
 
 from utils.date_time_util import delay
@@ -26,7 +28,7 @@ def send_text_message(device: u2.Device, message_text: str) -> bool:
         return True
     except Exception as e:
         print(f'send text message failed:{e}')
-        return False
+        sys.exit(-1)
 
 
 def send_image(device: u2.Device) -> bool:
@@ -53,7 +55,7 @@ def send_image(device: u2.Device) -> bool:
         return True
     except Exception as e:
         print(f'send image failed:{e}')
-        pass
+        sys.exit(-1)
 
 
 def send_video(device: u2.Device) -> bool:
@@ -80,7 +82,7 @@ def send_video(device: u2.Device) -> bool:
         return True
     except Exception as e:
         print(f'send video failed:{e}')
-        pass
+        sys.exit(-1)
 
 
 def send_file(device: u2.Device, root_name: str) -> bool:
@@ -112,4 +114,4 @@ def send_file(device: u2.Device, root_name: str) -> bool:
         return True
     except Exception as e:
         print(f'send file failed:{e}')
-        pass
+        sys.exit(-1)

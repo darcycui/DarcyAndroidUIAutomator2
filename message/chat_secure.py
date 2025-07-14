@@ -1,3 +1,5 @@
+import sys
+
 import uiautomator2 as u2
 
 from message.goback import go_back
@@ -26,7 +28,7 @@ def secure_chat_on(device: u2.Device, contact_name: str) -> bool:
     else:
         go_back(device)
         print('密聊开启失败')
-        return False
+        sys.exit(-1)
 
 
 def secure_chat_off(device: u2.Device, contact_name: str) -> bool:
@@ -47,6 +49,6 @@ def secure_chat_off(device: u2.Device, contact_name: str) -> bool:
     else:
         go_back(device)
         print('密聊关闭失败')
-        return False
+        sys.exit(-1)
 
 

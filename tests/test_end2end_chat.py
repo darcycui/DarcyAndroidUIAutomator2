@@ -1,9 +1,12 @@
 import unittest
 
-from message.chat_end2end import start_end2end_chat
+from adbutils import device
+
+from message.chat_end2end import start_end2end_chat_in, start_end2end_chat_out
+from message.chat_normal import start_chat
 from message.chat_secure import secure_chat_on, secure_chat_off
 from message.send import send_text_message
-from tests.data.TestData import DEVICE_ID, CHAT_USER_NAME, PACKAGE_NAME
+from tests.data.TestData import DEVICE_ID, CHAT_USER_NAME, PACKAGE_NAME_TEST
 from utils.date_time_util import get_current_time
 from utils.uiautomator2.connect import connect_device, prepare
 
@@ -19,11 +22,19 @@ class TestSecretChat(unittest.TestCase):
         """每个测试方法后运行"""
         print('tearDown')
 
-    def test_start_end_to_end_chat(self):
-        """测试开始端到端聊天"""
-        # prepare(self.device, PACKAGE_NAME, False)
-        b = start_end2end_chat(self.device, CHAT_USER_NAME)
-        self.assertEqual(True, b, '开始End2End聊天失败')
+    def test_start_end_to_end_chat_in(self):
+        """测试开始端到端聊天 in"""
+        prepare(self.device, PACKAGE_NAME_TEST)
+        start = start_chat(self.device, CHAT_USER_NAME)
+        self.assertEqual(True, start, '开始聊天失败')
+        b = start_end2end_chat_in(self.device, CHAT_USER_NAME)
+        self.assertEqual(True, b, 'in: 开始End2End聊天失败')
+
+    def test_start_end_to_end_chat_out(self):
+        """测试开始端到端聊天 out"""
+        prepare(self.device, PACKAGE_NAME_TEST)
+        b = start_end2end_chat_out(self.device)
+        self.assertEqual(True, b, 'out: 开始End2End聊天失败')
 
     def test_secure_chat_on(self):
         """测试密聊开关 打开"""

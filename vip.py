@@ -1,4 +1,5 @@
 import string
+import sys
 from datetime import datetime
 
 from utils.date_time_util import delay
@@ -11,6 +12,7 @@ from utils.uiautomator2.view_get import get_view_by_class_name, get_view_by_id
 from utils.uiautomator2.press_key import press_back
 from utils.uiautomator2.screenshot import screen_shot
 from utils.uiautomator2.view_info import get_view_info, get_view_text
+from utils.uiautomator2.view_wait import wait_view_appear_by_view_id
 
 device_id_samsang = 'RFCW8014R4E'
 package_name = 'com.kugou.android.lite'
@@ -46,7 +48,7 @@ if __name__ == '__main__':
         # 获取有效期区域元素 tabVIP
         tab_vip = get_view_by_id(d, 'tabVIP')
         # 等待tabVIP元素加载完成
-        tab_vip.wait()
+        wait_view_appear_by_view_id(d, 'tabVIP')
         # 截图
         screen_shot(d, 'checkin_vip', 10)
         # 获取有效期区域子元素
@@ -76,3 +78,4 @@ if __name__ == '__main__':
         print('++++++++++++++++++++ 今日vip签到: 成功 ++++++++++++++++++++')
     except Exception as e:
         print(f'-------------------- 今日vip签到: 失败 {e} --------------------')
+        sys.exit(-1)

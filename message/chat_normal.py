@@ -1,3 +1,5 @@
+import sys
+
 import uiautomator2 as u2
 
 from utils.date_time_util import delay
@@ -16,9 +18,11 @@ def start_chat(device: u2.Device, contact_name: str) -> bool:
         click_view_by_text(device, 'Contacts')
         # 如果存在联系人则直接点击
         if exists_by_text(device, contact_name):
+            print(f'存在联系人:{contact_name} 直接点击')
             click_view_by_text(device, contact_name)
         else:
             # 不存在联系人 点击搜索按钮
+            print(f'不存在联系人:{contact_name} 点击搜索')
             click_view_by_description(device, 'Search')
             delay(3)
             # 输入文本
@@ -35,4 +39,4 @@ def start_chat(device: u2.Device, contact_name: str) -> bool:
             raise Exception(f'开始聊天失败 {contact_name}')
     except Exception as e:
         print(f'开始聊天失败: {e}')
-        return False
+        sys.exit(-1)

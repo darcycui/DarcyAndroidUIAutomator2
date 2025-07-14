@@ -6,5 +6,5 @@ def get_current_time() -> str:
     return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
 
 
-def delay(time_seconds: int) -> None:
+def delay(time_seconds: float) -> None:
     time.sleep(time_seconds)

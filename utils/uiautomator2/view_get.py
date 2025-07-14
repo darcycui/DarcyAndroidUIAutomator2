@@ -21,7 +21,7 @@ def get_view_by_id(device: u2.Device, view_id: str, position: int = 0) -> u2.UiO
 def get_view_by_text(device: u2.Device, text: str, position: int = 0) -> u2.UiObject:
     view = device(text=text, instance=position)
     # print('view的类型:', type(view))
-    get_view_info(view)
+    # get_view_info(view)
     return view
 
 

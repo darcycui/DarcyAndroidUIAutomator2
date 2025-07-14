@@ -16,19 +16,12 @@ class TestViewExists(unittest.TestCase):
         """每个测试方法后运行"""
         print("tearDown")
 
-    def test_get_view_by_text(self):
-        target_text = "forTest"
-        target_text = "Gallery"
-        target_text = "You joined the secret chat"
-        target_text = "Check your Telegram messages"
-        b: bool = get_view_by_text(self.device, target_text) is not None
-        self.assertEqual(True, b, f"{target_text} 不存在")
-
     def test_exists_by_text(self):
         target_text = "forTest"
         target_text = "Gallery"
         target_text = "You joined the secret chat"
         target_text = "Check your Telegram messages"
+        target_text = "Yes, it's me"
         b: bool = exists_by_text(self.device, target_text)
         self.assertEqual(True, b, f"{target_text} 不存在")
 
@@ -41,6 +34,7 @@ class TestViewExists(unittest.TestCase):
 
     def test_exists_by_description(self):
         target_text = "Instant camera"
+        target_text = "Decline"
         b: bool = exists_by_description(self.device, target_text)
         self.assertEqual(True, b, f"{target_text} 不存在")
 

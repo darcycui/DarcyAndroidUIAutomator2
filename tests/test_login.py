@@ -1,8 +1,8 @@
 import unittest
 
 from message.login import login
-from tests.data.TestData import DEVICE_ID, PACKAGE_NAME, PACKAGE_NAME_WEB, COUNTRY_NUMBER, PHONE_NUMBER
-from utils.uiautomator2.connect import connect_device, prepare
+from tests.data.TestData import DEVICE_ID, PACKAGE_NAME_TEST, PACKAGE_NAME_WEB_TEST, COUNTRY_NUMBER, PHONE_NUMBER
+from utils.uiautomator2.connect import connect_device, prepare, prepare_login
 
 
 class TestLogin(unittest.TestCase):
@@ -11,10 +11,14 @@ class TestLogin(unittest.TestCase):
         self.device = connect_device(DEVICE_ID)
         self.assertIsNotNone(self.device, '设备连接失败')
 
+    def tearDown(self):
+        """每个测试方法后运行"""
+        print("tearDown")
+
     def test_login(self):
         """测试登录"""
-        prepare(self.device, PACKAGE_NAME, True)
-        b = login(self.device, PACKAGE_NAME, PACKAGE_NAME_WEB, COUNTRY_NUMBER, PHONE_NUMBER)
+        prepare_login(self.device, PACKAGE_NAME_TEST)
+        b = login(self.device, PACKAGE_NAME_TEST, PACKAGE_NAME_WEB_TEST, COUNTRY_NUMBER, PHONE_NUMBER)
         self.assertEqual(True, b, '登录失败')
 
 
