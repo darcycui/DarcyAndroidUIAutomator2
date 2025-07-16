@@ -10,6 +10,7 @@ from message.history import clear_history
 from message.login import login
 from message.send import send_text_message, send_image, send_video, send_file
 from message.take import send_take_image, send_take_video, send_take_audio, send_take_round_video
+from pc_script import call_pc_powershell
 from utils.date_time_util import delay
 from utils.uiautomator2.connect import connect_device, prepare_login, prepare
 
@@ -97,19 +98,16 @@ if __name__ == '__main__':
         # 连接设备
         in_device: u2.Device = connect_device(DEVICE_ID_IN)
         out_device: u2.Device = connect_device(DEVICE_ID_OUT)
-        print(
-            '----------------------------------------------登录:开始-------------------------------------------------')
+        print('---------------------------------------------登录:开始------------------------------------------------')
         # 登录准备
         prepare_login(in_device, PACKAGE_NAME)
         prepare_login(out_device, PACKAGE_NAME)
         # 登录
         login(in_device, PACKAGE_NAME, PACKAGE_NAME_WEB, COUNTRY_NUMBER_IN, PHONE_NUMBER_IN)
         login(out_device, PACKAGE_NAME, PACKAGE_NAME_WEB, COUNTRY_NUMBER_OUT, PHONE_NUMBER_OUT)
-        print(
-            '----------------------------------------------登录:结束-------------------------------------------------')
+        print('---------------------------------------------登录:结束------------------------------------------------')
         delay(3)
-        print(
-            '--------------------------------------------普通聊天:开始-----------------------------------------------')
+        print('-------------------------------------------普通聊天:开始----------------------------------------------')
         # 聊天准备
         prepare(in_device, PACKAGE_NAME)
         prepare(out_device, PACKAGE_NAME)
@@ -121,11 +119,9 @@ if __name__ == '__main__':
         # 聊天
         chat(in_device, out_device, 'Normal')
         delay(3)
-        print(
-            '--------------------------------------------普通聊天:结束-----------------------------------------------')
+        print('-------------------------------------------普通聊天:结束----------------------------------------------')
         delay(3)
-        print(
-            '--------------------------------------------私密聊天:开始-----------------------------------------------')
+        print('-------------------------------------------私密聊天:开始----------------------------------------------')
         # 聊天准备
         prepare(in_device, PACKAGE_NAME)
         prepare(out_device, PACKAGE_NAME)
@@ -135,8 +131,10 @@ if __name__ == '__main__':
         # 聊天
         chat(in_device, out_device, 'End2End')
         delay(3)
-        print(
-            '--------------------------------------------私密聊天:结束-----------------------------------------------')
+        print('-------------------------------------------私密聊天:结束----------------------------------------------')
+        print('--------------------------------------------PC解密:开始-----------------------------------------------')
+        call_pc_powershell('pc/copy_TG.ps1')
+        print('--------------------------------------------PC解密:结束-----------------------------------------------')
         # 息屏
         # turn_screen_off(d)
         print('发送消息成功')

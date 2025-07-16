@@ -12,7 +12,7 @@ class TestPC(unittest.TestCase):
         print('tearDown')
 
     def test_call_pc_powershell(self):
-        b = call_pc_powershell('D:/bbb/copy_TG.ps1')
+        b = call_pc_powershell('../pc/copy_TG.ps1')
         # b = call_pc_powershell('../pc/test.ps1')
         self.assertEqual(True, b, '调用 Powershell 脚本错误')
 
