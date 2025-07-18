@@ -62,8 +62,10 @@ try {
     explorer $outPath
     # 等待3秒
     Start-Sleep -Seconds 3
-    # 启动PC exe
-    & "D:\bbb\Telegram\TGPASS-testlog.exe" "$outPath"
+    # 启动PC exe 阻塞
+    # & "D:\bbb\Telegram\TGPASS-testlog.exe" "$outPath"
+    # 启动PC exe 不阻塞
+    Start-Process -FilePath "D:\bbb\Telegram\TGPASS-testlog.exe" -ArgumentList $outPath
     # 复制outPath到剪贴板(避免多余 BOM 0xfeff)
     Set-Clipboard -Value $outPath
 }
