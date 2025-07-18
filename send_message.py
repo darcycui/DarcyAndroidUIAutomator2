@@ -16,6 +16,7 @@ from utils.uiautomator2.connect import connect_device, prepare_login, prepare
 
 PACKAGE_NAME = 'org.telegram.messenger'
 PACKAGE_NAME_WEB = 'org.telegram.messenger.web'
+PACKAGE_NAME_BETA = 'org.telegram.messenger.beta'
 
 DEVICE_ID_IN = 'RFCW8014R4E'
 COUNTRY_NUMBER_IN = '852'
@@ -103,8 +104,8 @@ if __name__ == '__main__':
         prepare_login(in_device, PACKAGE_NAME)
         prepare_login(out_device, PACKAGE_NAME)
         # 登录
-        login(in_device, PACKAGE_NAME, PACKAGE_NAME_WEB, COUNTRY_NUMBER_IN, PHONE_NUMBER_IN)
-        login(out_device, PACKAGE_NAME, PACKAGE_NAME_WEB, COUNTRY_NUMBER_OUT, PHONE_NUMBER_OUT)
+        login(in_device, PACKAGE_NAME, PACKAGE_NAME_WEB, PACKAGE_NAME_BETA, COUNTRY_NUMBER_IN, PHONE_NUMBER_IN)
+        login(out_device, PACKAGE_NAME, PACKAGE_NAME_WEB, PACKAGE_NAME_BETA, COUNTRY_NUMBER_OUT, PHONE_NUMBER_OUT)
         print('---------------------------------------------登录:结束------------------------------------------------')
         delay(3)
         print('-------------------------------------------普通聊天:开始----------------------------------------------')

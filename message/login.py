@@ -4,7 +4,7 @@ import uiautomator2 as u2
 
 from message.app_web import app_web_prepare, app_web_open, app_web_close
 from utils.date_time_util import delay
-from utils.uiautomator2.apps import start_app
+from utils.uiautomator2.apps import start_app, stop_app
 from utils.uiautomator2.device import get_device_name
 from utils.uiautomator2.input import input_text
 from utils.uiautomator2.notification import open_notification, close_notification
@@ -21,11 +21,14 @@ def login(
         device: u2.Device,
         package_name_: str,
         package_name_web_: str,
+        package_name_beta_: str,
         country_number_: str,
         phone_number_: str
 ) -> bool:
     try:
         print(f'登录: {get_device_name(device)} {package_name_} {country_number_}-{phone_number_}')
+        # 停止 app beta
+        stop_app(device, package_name_beta_)
         # 打开 app
         start_app(device, package_name_)
         # 准备app web

@@ -1,6 +1,7 @@
 # 模拟参数
 PACKAGE_NAME_TEST = 'org.telegram.messenger'
 PACKAGE_NAME_WEB_TEST = 'org.telegram.messenger.web'
+PACKAGE_NAME_BETA = 'org.telegram.messenger.beta'
 
 DEVICE_ID = 'RFCW8014R4E'
 COUNTRY_NUMBER = '852'
