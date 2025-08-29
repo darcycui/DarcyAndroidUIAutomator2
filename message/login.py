@@ -4,6 +4,7 @@ import uiautomator2 as u2
 
 from message.app_web import app_web_prepare, app_web_open, app_web_close
 from utils.date_time_util import delay
+from utils.string_util import split_verification_code
 from utils.uiautomator2.apps import start_app, stop_app
 from utils.uiautomator2.device import get_device_name
 from utils.uiautomator2.input import input_text
@@ -69,7 +70,7 @@ def login(
             sys.exit(-1)
         verify_code_view: u2.UiObject = get_view_by_text_contains(device, 'Login code:')
         verify_code_message: str = get_view_text(verify_code_view)
-        verify_code_numbers = verify_code_message[12:17]
+        verify_code_numbers = split_verification_code(verify_code_message)
         print('找到验证码-->', verify_code_numbers)
         # 关闭通知栏
         close_notification(device)
@@ -81,6 +82,7 @@ def login(
         print('输入框个数-->', len(code_edit_text_list), '验证码位数-->', len(verify_code_numbers))
         if len(code_edit_text_list) <= 0 or len(code_edit_text_list) != len(verify_code_numbers):
             print('输入框个数与验证码位数不一致')
+            sys.exit(-1)
         for i, item in enumerate(verify_code_numbers):
             input_text(device, code_edit_text_list[i], item)
 
