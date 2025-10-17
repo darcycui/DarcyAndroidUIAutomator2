@@ -86,7 +86,7 @@ def login(
         for i, item in enumerate(verify_code_numbers):
             input_text(device, code_edit_text_list[i], item)
 
-        delay(3)
+        delay(30)
         # 点击OK 二次密码提示
         if exists_by_text(device, 'OK'):
             click_view_by_text(device, 'OK')
