@@ -1,12 +1,13 @@
 import unittest
 from unittest import skipIf, skip
 
+from message_tg.bean.UserBean import UserBean
 from message_tg.chat_normal import start_chat
 from message_tg.history import clear_history
 from message_tg.receive import receive_off_message, receive_on_message, receive_chat_message
 from message_tg.chat_secure import secure_chat_on, secure_chat_off
 from message_tg.send import send_text_message
-from tests.data.TestData import DEVICE_ID, PACKAGE_NAME_TEST, CHAT_USER_NAME
+from tests.data.TestData import DEVICE_ID, PACKAGE_NAME_TEST, CHAT_USER_NAME, COUNTRY_NUMBER, PHONE_NUMBER, ROOT_NAME
 from utils.date_time_util import get_current_time
 from utils.uiautomator2.connect import connect_device, prepare
 
@@ -17,6 +18,7 @@ class TestChat(unittest.TestCase):
         print('setUp')
         self.device = connect_device(DEVICE_ID)
         self.assertIsNotNone(self.device, '设备连接失败')
+        self.user = UserBean(DEVICE_ID, COUNTRY_NUMBER, PHONE_NUMBER, CHAT_USER_NAME, ROOT_NAME)
 
     def tearDown(self):
         """每个测试方法后运行"""
@@ -24,9 +26,9 @@ class TestChat(unittest.TestCase):
 
     def test_open_chat_page(self):
         """测试打开聊天页面"""
-        prepare(self.device, PACKAGE_NAME_TEST)
+        prepare(self.device, self.user)
         # 打开聊天页面
-        b = start_chat(self.device, CHAT_USER_NAME)
+        b = start_chat(self.device, self.user)
         self.assertEqual(True, b, '打开聊天页面失败')
 
     def test_clear_history(self):

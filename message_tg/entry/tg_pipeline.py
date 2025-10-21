@@ -92,7 +92,7 @@ def start_chat_pair(user_in: UserBean, user_out: UserBean):
         # login(in_device, user_in)
         # login(out_device, user_out)
         # print('---------------------------------------------登录:结束------------------------------------------------')
-        # delay(3)
+        delay(3)
         print('-------------------------------------------普通聊天:开始----------------------------------------------')
         # 聊天准备
         prepare(in_device, user_in)
