@@ -2,15 +2,17 @@ import sys
 
 import uiautomator2 as u2
 
-from message.dialog_list import click_dialog_list_with_position
-from message.goback import go_back
+from message_tg.bean.UserBean import UserBean
+from message_tg.dialog_list import click_dialog_list_with_position
+from message_tg.goback import go_back
 from utils.date_time_util import delay
 from utils.uiautomator2.view_click import click_view_by_text, click_view_by_description
 from utils.uiautomator2.view_exists import exists_by_text, exists_by_text_contains
 
 
-def start_end2end_chat_in(device: u2.Device, contact_name: str) -> bool:
+def start_end2end_chat_in(device: u2.Device, user_bean: UserBean) -> bool:
     try:
+        contact_name: str = user_bean.chat_user_name
         # 点击头像
         click_view_by_text(device, contact_name)
         # 点击更多按钮

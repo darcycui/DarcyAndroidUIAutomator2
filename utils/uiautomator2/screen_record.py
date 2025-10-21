@@ -31,6 +31,6 @@ def screen_record_stop(process: Popen):
     # 终止 scrcpy
     process.terminate()
     # # 发送中断信号（Ctrl+C）给scrcpy进程
-    # os.kill(process.pid, signal.SIGINT)
+    # os.kill(process.pid, message_signal.SIGINT)
     process.wait()
     print('录屏结束完毕---')

@@ -1,6 +1,6 @@
 import uiautomator2 as u2
 
-from message.send import send_text_message
+from message_tg.send import send_text_message
 
 
 def receive_on_message(device: u2.Device) -> bool:

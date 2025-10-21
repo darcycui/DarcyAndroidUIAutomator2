@@ -1,6 +1,7 @@
 import uiautomator2 as u2
-from message.dialog_list import click_dialog_list
-from message.permission import grant_app_permissions
+from message_tg.dialog_list import click_dialog_list
+from message_tg.config.global_config_tg import TG_PERMISSIONS
+from message_tg.permission import grant_app_permissions
 from utils.date_time_util import delay
 from utils.uiautomator2.apps import start_app, stop_app
 from utils.uiautomator2.press_key import press_home
@@ -32,6 +33,7 @@ def app_web_open(device: u2.Device, package_name_web_: str, duration: int):
     delay(duration)
     wait_view_appear_by_text(device, 'Telegram')
     print('web.app 连接成功')
+
 
 def app_web_close(device: u2.Device, package_name_web_: str):
     # 关闭.web app

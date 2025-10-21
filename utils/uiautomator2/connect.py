@@ -3,7 +3,8 @@ import time
 
 import uiautomator2 as u2
 
-from message.permission import grant_app_permissions
+from message_tg.bean.UserBean import UserBean
+from message_tg.permission import grant_app_permissions
 from utils.date_time_util import delay
 from utils.uiautomator2.apps import stop_app, clear_app_data, start_app
 from utils.uiautomator2.device import turn_screen_on, get_device_name
@@ -27,7 +28,8 @@ def connect_device(device_id: str) -> u2.Device:
     return device
 
 
-def prepare_login(device: u2.Device, package_name: str):
+def prepare_login(device: u2.Device, user_bean: UserBean):
+    package_name = user_bean.package_name
     print(f'准备登录: {get_device_name(device)} {package_name}')
     # 亮屏
     turn_screen_on(device)
@@ -43,7 +45,8 @@ def prepare_login(device: u2.Device, package_name: str):
     start_app(device, package_name)
 
 
-def prepare(device: u2.Device, package_name: str):
+def prepare(device: u2.Device, user_bean: UserBean):
+    package_name: str = user_bean.package_name
     print(f'准备: {get_device_name(device)} {package_name}')
     # 亮屏
     turn_screen_on(device)

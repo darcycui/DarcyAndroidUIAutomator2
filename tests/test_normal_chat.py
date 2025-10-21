@@ -1,11 +1,11 @@
 import unittest
 from unittest import skipIf, skip
 
-from message.chat_normal import start_chat
-from message.history import clear_history
-from message.receive import receive_off_message, receive_on_message, receive_chat_message
-from message.chat_secure import secure_chat_on, secure_chat_off
-from message.send import send_text_message
+from message_tg.chat_normal import start_chat
+from message_tg.history import clear_history
+from message_tg.receive import receive_off_message, receive_on_message, receive_chat_message
+from message_tg.chat_secure import secure_chat_on, secure_chat_off
+from message_tg.send import send_text_message
 from tests.data.TestData import DEVICE_ID, PACKAGE_NAME_TEST, CHAT_USER_NAME
 from utils.date_time_util import get_current_time
 from utils.uiautomator2.connect import connect_device, prepare

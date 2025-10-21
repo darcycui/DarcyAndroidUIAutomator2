@@ -2,10 +2,10 @@ import unittest
 
 from adbutils import device
 
-from message.chat_end2end import start_end2end_chat_in, start_end2end_chat_out
-from message.chat_normal import start_chat
-from message.chat_secure import secure_chat_on, secure_chat_off
-from message.send import send_text_message
+from message_tg.chat_end2end import start_end2end_chat_in, start_end2end_chat_out
+from message_tg.chat_normal import start_chat
+from message_tg.chat_secure import secure_chat_on, secure_chat_off
+from message_tg.send import send_text_message
 from tests.data.TestData import DEVICE_ID, CHAT_USER_NAME, PACKAGE_NAME_TEST
 from utils.date_time_util import get_current_time
 from utils.uiautomator2.connect import connect_device, prepare

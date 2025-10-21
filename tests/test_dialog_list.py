@@ -2,7 +2,7 @@ import unittest
 
 import uiautomator2 as u2
 
-from message.dialog_list import click_dialog_list, click_dialog_list_with_position
+from message_tg.dialog_list import click_dialog_list, click_dialog_list_with_position
 from tests.data.TestData import DEVICE_ID, PACKAGE_NAME_TEST
 from utils.uiautomator2.connect import connect_device, prepare
 

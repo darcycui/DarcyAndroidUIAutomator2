@@ -2,6 +2,7 @@ import sys
 
 import uiautomator2 as u2
 
+from message_tg.bean.UserBean import UserBean
 from utils.date_time_util import delay
 from utils.uiautomator2.input import input_text
 from utils.uiautomator2.view_click import click_view_by_text, click_view_by_class_name, click_view_by_description
@@ -9,8 +10,9 @@ from utils.uiautomator2.view_exists import exists_by_description, exists_by_text
 from utils.uiautomator2.view_get import get_view_by_text
 
 
-def start_chat(device: u2.Device, contact_name: str) -> bool:
+def start_chat(device: u2.Device, user_bean: UserBean) -> bool:
     try:
+        contact_name: str = user_bean.chat_user_name
         # 定位左上角设置按钮
         click_view_by_description(device, 'Open navigation menu')
         delay(2)

@@ -2,7 +2,8 @@ import sys
 
 import uiautomator2 as u2
 
-from message.app_web import app_web_prepare, app_web_open, app_web_close
+from message_tg.app_web import app_web_prepare, app_web_open, app_web_close
+from message_tg.bean.UserBean import UserBean
 from utils.date_time_util import delay
 from utils.string_util import split_verification_code
 from utils.uiautomator2.apps import start_app, stop_app
@@ -20,13 +21,14 @@ from utils.uiautomator2.view_wait import wait_view_appear_by_text, wait_view_app
 # 登录
 def login(
         device: u2.Device,
-        package_name_: str,
-        package_name_web_: str,
-        package_name_beta_: str,
-        country_number_: str,
-        phone_number_: str
+        user_bean: UserBean
 ) -> bool:
     try:
+        package_name_: str = user_bean.package_name
+        package_name_web_: str = user_bean.package_name_web
+        package_name_beta_: str = user_bean.package_name_beta
+        country_number_: str = user_bean.country_number
+        phone_number_: str = user_bean.phone_number
         print(f'登录: {get_device_name(device)} {package_name_} {country_number_}-{phone_number_}')
         # 停止 app beta
         stop_app(device, package_name_beta_)

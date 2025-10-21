@@ -1,6 +1,6 @@
 import unittest
 
-from message.login import login
+from message_tg.login import login
 from tests.data.TestData import DEVICE_ID, PACKAGE_NAME_TEST, PACKAGE_NAME_WEB_TEST, COUNTRY_NUMBER, PHONE_NUMBER
 from utils.uiautomator2.connect import connect_device, prepare, prepare_login
 
