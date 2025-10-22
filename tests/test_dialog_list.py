@@ -2,7 +2,7 @@ import unittest
 
 import uiautomator2 as u2
 
-from message_tg.bean.UserBean import UserBean
+from message_tg.bean.TGBean import UserBean
 from message_tg.dialog_list import click_dialog_list, click_dialog_list_with_position
 from tests.data.TestData import DEVICE_ID, PACKAGE_NAME_TEST, COUNTRY_NUMBER, PHONE_NUMBER, CHAT_USER_NAME, ROOT_NAME
 from utils.uiautomator2.connect import connect_device, prepare

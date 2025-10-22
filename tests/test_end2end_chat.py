@@ -2,7 +2,7 @@ import unittest
 
 from adbutils import device
 
-from message_tg.bean.UserBean import UserBean
+from message_tg.bean.TGBean import UserBean
 from message_tg.chat_end2end import start_end2end_chat_in, start_end2end_chat_out
 from message_tg.chat_normal import start_chat
 from message_tg.chat_secure import secure_chat_on, secure_chat_off

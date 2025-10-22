@@ -2,7 +2,7 @@ import sys
 
 import uiautomator2 as u2
 
-from message_tg.bean.UserBean import UserBean
+from message_tg.bean.TGBean import UserBean
 from utils.date_time_util import delay
 from utils.uiautomator2.input import input_text
 from utils.uiautomator2.view_click import click_view_by_text, click_view_by_class_name, click_view_by_description

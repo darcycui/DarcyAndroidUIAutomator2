@@ -2,7 +2,7 @@ import sys
 
 import uiautomator2 as u2
 
-from message_tg.bean.UserBean import UserBean
+from message_tg.bean.TGBean import UserBean
 from message_tg.call import call_video, call_answer_video, call_end, call_rate_close, call_voice, call_answer_voice
 from message_tg.chat_end2end import start_end2end_chat_in, start_end2end_chat_out
 from message_tg.chat_normal import start_chat
@@ -92,19 +92,19 @@ def start_chat_pair(user_in: UserBean, user_out: UserBean):
         # login(in_device, user_in)
         # login(out_device, user_out)
         # print('---------------------------------------------登录:结束------------------------------------------------')
-        delay(3)
-        print('-------------------------------------------普通聊天:开始----------------------------------------------')
-        # 聊天准备
-        prepare(in_device, user_in)
-        prepare(out_device, user_out)
-        start_chat(in_device, user_in)
-        start_chat(out_device, user_out)
-        # 清空历史
-        clear_history(in_device)
-        clear_history(out_device)
-        # 聊天
-        chat(in_device, out_device, user_in, user_out, type_='Normal')
-        delay(3)
+        # delay(3)
+        # print('-------------------------------------------普通聊天:开始----------------------------------------------')
+        # # 聊天准备
+        # prepare(in_device, user_in)
+        # prepare(out_device, user_out)
+        # start_chat(in_device, user_in)
+        # start_chat(out_device, user_out)
+        # # 清空历史
+        # clear_history(in_device)
+        # clear_history(out_device)
+        # # 聊天
+        # chat(in_device, out_device, user_in, user_out, type_='Normal')
+        # delay(3)
         print('-------------------------------------------普通聊天:结束----------------------------------------------')
         delay(3)
         print('-------------------------------------------私密聊天:开始----------------------------------------------')

@@ -1,6 +1,6 @@
 import unittest
 
-from message_tg.bean.UserBean import UserBean
+from message_tg.bean.TGBean import UserBean
 from message_tg.login import login
 from tests.data.TestData import DEVICE_ID, PACKAGE_NAME_TEST, PACKAGE_NAME_WEB_TEST, COUNTRY_NUMBER, PHONE_NUMBER, \
     CHAT_USER_NAME, ROOT_NAME

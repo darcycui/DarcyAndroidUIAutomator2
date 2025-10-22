@@ -2,7 +2,7 @@ import sys
 
 import uiautomator2 as u2
 
-from message_tg.bean.UserBean import UserBean
+from message_tg.bean.TGBean import UserBean
 from message_tg.dialog_list import click_dialog_list_with_position
 from message_tg.goback import go_back
 from utils.date_time_util import delay

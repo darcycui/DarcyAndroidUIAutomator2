@@ -1,7 +1,7 @@
 import unittest
 from unittest import skipIf, skip
 
-from message_tg.bean.UserBean import UserBean
+from message_tg.bean.TGBean import UserBean
 from message_tg.chat_normal import start_chat
 from message_tg.history import clear_history
 from message_tg.receive import receive_off_message, receive_on_message, receive_chat_message

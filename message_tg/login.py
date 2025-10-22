@@ -3,7 +3,7 @@ import sys
 import uiautomator2 as u2
 
 from message_tg.app_web import app_web_prepare, app_web_open, app_web_close
-from message_tg.bean.UserBean import UserBean
+from message_tg.bean.TGBean import UserBean
 from utils.date_time_util import delay
 from utils.string_util import split_verification_code
 from utils.uiautomator2.apps import start_app, stop_app

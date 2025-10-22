@@ -1,6 +1,6 @@
 from adbutils import device
 
-from message_tg.bean.UserBean import UserBean
+from message_tg.bean.TGBean import UserBean
 from message_tg.config.global_config_tg import DEVICE_ID_IN, COUNTRY_NUMBER_IN, PHONE_NUMBER_IN, CHAT_USER_NAME_IN, \
     ROOT_NAME_IN, DEVICE_ID_OUT, COUNTRY_NUMBER_OUT, PHONE_NUMBER_OUT, CHAT_USER_NAME_OUT, ROOT_NAME_OUT, \
     DEVICE_ID_OUT_HUAWEI, COUNTRY_NUMBER_OUT_HUAWEI, PHONE_NUMBER_OUT_HUAWEI, CHAT_USER_NAME_OUT_HUAWEI, \

@@ -3,7 +3,7 @@ import time
 
 import uiautomator2 as u2
 
-from message_tg.bean.UserBean import UserBean
+from message_tg.bean.TGBean import UserBean
 from message_tg.permission import grant_app_permissions
 from utils.date_time_util import delay
 from utils.uiautomator2.apps import stop_app, clear_app_data, start_app
