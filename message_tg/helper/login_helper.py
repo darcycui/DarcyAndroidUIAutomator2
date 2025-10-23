@@ -2,8 +2,8 @@ import sys
 
 import uiautomator2 as u2
 
-from message_tg.app_web import app_web_prepare, app_web_open, app_web_close
-from message_tg.bean.TGBean import UserBean
+from message_tg.helper.app_web_helper import app_web_prepare, app_web_open, app_web_close
+from message_tg.bean.TGBean import TGBean
 from utils.date_time_util import delay
 from utils.string_util import split_verification_code
 from utils.uiautomator2.apps import start_app, stop_app
@@ -15,13 +15,13 @@ from utils.uiautomator2.view_exists import exists_by_text, exists_by_description
 from utils.uiautomator2.view_get import get_view_by_class_name, get_view_by_text_contains
 from utils.uiautomator2.view_info import get_view_text
 from utils.uiautomator2.view_list_get import get_view_list_by_class_name
-from utils.uiautomator2.view_wait import wait_view_appear_by_text, wait_view_appear_by_text
+from utils.uiautomator2.view_wait import wait_view_appear_by_text
 
 
 # 登录
-def login(
+def login_tg(
         device: u2.Device,
-        user_bean: UserBean
+        user_bean: TGBean
 ) -> bool:
     try:
         package_name_: str = user_bean.package_name

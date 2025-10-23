@@ -32,8 +32,8 @@ def wait_view_appear_by_view_id(device: u2.Device, view_id: str, timeout=120) ->
     return b
 
 
-def wait_view_gone_by_view_id(device: u2.Device, text: str, timeout=120) -> bool:
-    print('等待元素消失:', text)
-    b = device(resourceId=text).wait(exists=False, timeout=timeout)
-    print(f'是否存在 {text}:', b)
+def wait_view_gone_by_view_id(device: u2.Device, view_id: str, timeout=120) -> bool:
+    print('等待元素消失:', view_id)
+    b = device(resourceId=view_id).wait(exists=False, timeout=timeout)
+    print(f'是否存在 {view_id}:', b)
     return b

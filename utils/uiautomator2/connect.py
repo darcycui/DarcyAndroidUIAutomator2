@@ -1,10 +1,7 @@
-import logging
-import time
-
 import uiautomator2 as u2
 
-from message_tg.bean.TGBean import UserBean
-from message_tg.permission import grant_app_permissions
+from bean.IUserBean import IUserBean
+from utils.uiautomator2.permission import grant_app_permissions
 from utils.date_time_util import delay
 from utils.uiautomator2.apps import stop_app, clear_app_data, start_app
 from utils.uiautomator2.device import turn_screen_on, get_device_name
@@ -28,7 +25,7 @@ def connect_device(device_id: str) -> u2.Device:
     return device
 
 
-def prepare_login(device: u2.Device, user_bean: UserBean):
+def prepare_login(device: u2.Device, user_bean: IUserBean, permissions: list[str]):
     package_name = user_bean.package_name
     print(f'准备登录: {get_device_name(device)} {package_name}')
     # 亮屏
@@ -40,12 +37,12 @@ def prepare_login(device: u2.Device, user_bean: UserBean):
     # 清空应用数据
     clear_app_data(device, package_name)
     # 授权所有权限
-    grant_app_permissions(device, package_name)
+    grant_app_permissions(device, package_name, permissions)
     # 启动应用
     start_app(device, package_name)
 
 
-def prepare(device: u2.Device, user_bean: UserBean):
+def prepare(device: u2.Device, user_bean: IUserBean):
     package_name: str = user_bean.package_name
     print(f'准备: {get_device_name(device)} {package_name}')
     # 亮屏

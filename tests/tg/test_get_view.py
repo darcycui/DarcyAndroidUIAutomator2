@@ -40,7 +40,7 @@ class TestGetView(unittest.TestCase):
     def dump_ui_to_file(self):
         # 打印当前页面结构用于调试
         hierarchy = self.device.dump_hierarchy()
-        with open("current_ui.xml", "w", encoding="utf-8") as f:
+        with open("../result/current_ui.xml", "w", encoding="utf-8") as f:
             f.write(hierarchy)
         print("当前UI结构已保存至 current_ui.xml")
 

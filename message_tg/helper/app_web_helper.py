@@ -1,7 +1,8 @@
 import uiautomator2 as u2
-from message_tg.dialog_list import click_dialog_list
+
 from message_tg.config.global_config_tg import TG_PERMISSIONS
-from message_tg.permission import grant_app_permissions
+from message_tg.helper.dialog_list_helper import click_dialog_list
+from utils.uiautomator2.permission import grant_app_permissions
 from utils.date_time_util import delay
 from utils.uiautomator2.apps import start_app, stop_app
 from utils.uiautomator2.press_key import press_home
@@ -14,7 +15,7 @@ def app_web_prepare(device: u2.Device, package_name_web_: str):
     print('准备.web app')
     # 授权所有权限
     app_web_close(device, package_name_web_)
-    grant_app_permissions(device, package_name_web_)
+    grant_app_permissions(device, package_name_web_, TG_PERMISSIONS)
     app_web_open(device, package_name_web_, 10)
     if exists_by_text(device, "Yes, it's me"):
         print('存在[确认是我]按钮 点击')

@@ -2,21 +2,23 @@ import sys
 
 import uiautomator2 as u2
 
-from message_tg.bean.TGBean import UserBean
-from message_tg.call import call_video, call_answer_video, call_end, call_rate_close, call_voice, call_answer_voice
-from message_tg.chat_end2end import start_end2end_chat_in, start_end2end_chat_out
-from message_tg.chat_normal import start_chat
-from message_tg.chat_secure import secure_chat_on
-from message_tg.history import clear_history
-from message_tg.login import login
-from message_tg.send import send_text_message, send_image, send_video, send_file
-from message_tg.take import send_take_image, send_take_video, send_take_audio, send_take_round_video
+from message_tg.bean.TGBean import TGBean
+from message_tg.config.global_config_tg import TG_PERMISSIONS
+from message_tg.helper.call_helper import call_video, call_answer_video, call_end, call_rate_close, call_voice, \
+    call_answer_voice
+from message_tg.helper.chat_end2end_helper import start_end2end_chat_in_tg, start_end2end_chat_out_tg
+from message_tg.helper.chat_normal_helper import start_chat_tg
+from message_tg.helper.chat_secure_helper import secure_chat_on
+from message_tg.helper.history_helper import clear_history_tg
+from message_tg.helper.login_helper import login_tg
+from message_tg.helper.send_helper import send_text_message, send_image, send_video, send_file
+from message_tg.helper.take_helper import send_take_image, send_take_video, send_take_audio, send_take_round_video
 from pc_script import call_pc_powershell
 from utils.date_time_util import delay
 from utils.uiautomator2.connect import connect_device, prepare_login, prepare
 
 
-def chat(in_device_: u2.Device, out_device_: u2.Device, user_in: UserBean, user_out: UserBean, type_: str):
+def chat_tg(in_device_: u2.Device, out_device_: u2.Device, user_in: TGBean, user_out: TGBean, type_: str):
     # 开启密聊
     secure_chat_on(in_device_, user_in.chat_user_name)
     # 发送 on 消息
@@ -78,44 +80,44 @@ def phone_call(from_device, to_device):
     call_rate_close(to_device)
 
 
-def start_chat_pair(user_in: UserBean, user_out: UserBean):
+def start_chat_pair_tg(user_in: TGBean, user_out: TGBean):
     try:
         print('发送消息 start+++')
         # 连接设备
         in_device: u2.Device = connect_device(user_in.device_id)
         out_device: u2.Device = connect_device(user_out.device_id)
-        # print('---------------------------------------------登录:开始------------------------------------------------')
-        # # 登录准备
-        # prepare_login(in_device, user_in)
-        # prepare_login(out_device, user_out)
-        # # 登录
-        # login(in_device, user_in)
-        # login(out_device, user_out)
-        # print('---------------------------------------------登录:结束------------------------------------------------')
-        # delay(3)
-        # print('-------------------------------------------普通聊天:开始----------------------------------------------')
-        # # 聊天准备
-        # prepare(in_device, user_in)
-        # prepare(out_device, user_out)
-        # start_chat(in_device, user_in)
-        # start_chat(out_device, user_out)
-        # # 清空历史
-        # clear_history(in_device)
-        # clear_history(out_device)
-        # # 聊天
-        # chat(in_device, out_device, user_in, user_out, type_='Normal')
-        # delay(3)
+        print('---------------------------------------------登录:开始------------------------------------------------')
+        # 登录准备
+        prepare_login(in_device, user_in, TG_PERMISSIONS)
+        prepare_login(out_device, user_out, TG_PERMISSIONS)
+        # 登录
+        login_tg(in_device, user_in)
+        login_tg(out_device, user_out)
+        print('---------------------------------------------登录:结束------------------------------------------------')
+        delay(3)
+        print('-------------------------------------------普通聊天:开始----------------------------------------------')
+        # 聊天准备
+        prepare(in_device, user_in)
+        prepare(out_device, user_out)
+        start_chat_tg(in_device, user_in)
+        start_chat_tg(out_device, user_out)
+        # 清空历史
+        clear_history_tg(in_device)
+        clear_history_tg(out_device)
+        # 聊天
+        chat_tg(in_device, out_device, user_in, user_out, type_='Normal')
+        delay(3)
         print('-------------------------------------------普通聊天:结束----------------------------------------------')
         delay(3)
         print('-------------------------------------------私密聊天:开始----------------------------------------------')
         # 聊天准备
         prepare(in_device, user_in)
         prepare(out_device, user_out)
-        start_chat(in_device, user_in)
-        start_end2end_chat_in(in_device, user_in)
-        start_end2end_chat_out(out_device)
+        start_chat_tg(in_device, user_in)
+        start_end2end_chat_in_tg(in_device, user_in)
+        start_end2end_chat_out_tg(out_device)
         # 聊天
-        chat(in_device, out_device, user_in, user_out, type_='End2End')
+        chat_tg(in_device, out_device, user_in, user_out, type_='End2End')
         delay(3)
         print('-------------------------------------------私密聊天:结束----------------------------------------------')
         print('--------------------------------------------PC解密:开始-----------------------------------------------')

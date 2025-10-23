@@ -1,10 +1,11 @@
 import unittest
 
-from message_tg.bean.TGBean import UserBean
-from message_tg.login import login
-from tests.data.TestData import DEVICE_ID, PACKAGE_NAME_TEST, PACKAGE_NAME_WEB_TEST, COUNTRY_NUMBER, PHONE_NUMBER, \
+from message_tg.bean.TGBean import TGBean
+from message_tg.config.global_config_tg import TG_PERMISSIONS
+from message_tg.helper.login_helper import login_tg
+from tests.data.TestData import DEVICE_ID, COUNTRY_NUMBER, PHONE_NUMBER, \
     CHAT_USER_NAME, ROOT_NAME
-from utils.uiautomator2.connect import connect_device, prepare, prepare_login
+from utils.uiautomator2.connect import connect_device, prepare_login
 
 
 class TestLogin(unittest.TestCase):
@@ -12,7 +13,7 @@ class TestLogin(unittest.TestCase):
         """每个测试方法前运行"""
         self.device = connect_device(DEVICE_ID)
         self.assertIsNotNone(self.device, '设备连接失败')
-        self.user = UserBean(DEVICE_ID, COUNTRY_NUMBER, PHONE_NUMBER, CHAT_USER_NAME, ROOT_NAME)
+        self.user = TGBean(DEVICE_ID, COUNTRY_NUMBER, PHONE_NUMBER, CHAT_USER_NAME, ROOT_NAME)
 
     def tearDown(self):
         """每个测试方法后运行"""
@@ -20,8 +21,8 @@ class TestLogin(unittest.TestCase):
 
     def test_login(self):
         """测试登录"""
-        prepare_login(self.device, self.user)
-        b = login(self.device, self.user)
+        prepare_login(self.device, self.user, TG_PERMISSIONS)
+        b = login_tg(self.device, self.user)
         self.assertEqual(True, b, '登录失败')
 
 

@@ -1,13 +1,11 @@
 import unittest
 
-from adbutils import device
-
-from message_tg.bean.TGBean import UserBean
-from message_tg.chat_end2end import start_end2end_chat_in, start_end2end_chat_out
-from message_tg.chat_normal import start_chat
-from message_tg.chat_secure import secure_chat_on, secure_chat_off
-from message_tg.send import send_text_message
-from tests.data.TestData import DEVICE_ID, CHAT_USER_NAME, PACKAGE_NAME_TEST, COUNTRY_NUMBER, PHONE_NUMBER, ROOT_NAME
+from message_tg.bean.TGBean import TGBean
+from message_tg.helper.chat_end2end_helper import start_end2end_chat_in_tg, start_end2end_chat_out_tg
+from message_tg.helper.chat_normal_helper import start_chat_tg
+from message_tg.helper.chat_secure_helper import secure_chat_on, secure_chat_off
+from message_tg.helper.send_helper import send_text_message
+from tests.data.TestData import DEVICE_ID, CHAT_USER_NAME, COUNTRY_NUMBER, PHONE_NUMBER, ROOT_NAME
 from utils.date_time_util import get_current_time
 from utils.uiautomator2.connect import connect_device, prepare
 
@@ -18,7 +16,7 @@ class TestSecretChat(unittest.TestCase):
         print('setUp')
         self.device = connect_device(DEVICE_ID)
         self.assertIsNotNone(self.device, '设备连接失败')
-        self.user = UserBean(DEVICE_ID, COUNTRY_NUMBER, PHONE_NUMBER, CHAT_USER_NAME, ROOT_NAME)
+        self.user = TGBean(DEVICE_ID, COUNTRY_NUMBER, PHONE_NUMBER, CHAT_USER_NAME, ROOT_NAME)
 
     def tearDown(self):
         """每个测试方法后运行"""
@@ -27,15 +25,15 @@ class TestSecretChat(unittest.TestCase):
     def test_start_end_to_end_chat_in(self):
         """测试开始端到端聊天 in"""
         prepare(self.device, self.user)
-        start = start_chat(self.device, self.user)
+        start = start_chat_tg(self.device, self.user)
         self.assertEqual(True, start, '开始聊天失败')
-        b = start_end2end_chat_in(self.device, CHAT_USER_NAME)
+        b = start_end2end_chat_in_tg(self.device, CHAT_USER_NAME)
         self.assertEqual(True, b, 'in: 开始End2End聊天失败')
 
     def test_start_end_to_end_chat_out(self):
         """测试开始端到端聊天 out"""
         prepare(self.device, self.user)
-        b = start_end2end_chat_out(self.device)
+        b = start_end2end_chat_out_tg(self.device)
         self.assertEqual(True, b, 'out: 开始End2End聊天失败')
 
     def test_secure_chat_on(self):

@@ -45,14 +45,10 @@ if __name__ == '__main__':
         click_view_by_id(d, package_name + ':id/ett')
         # 点击会员中心图标
         click_view_by_id(d, package_name + ':id/a9f')
-        # 获取有效期区域元素 tabVIP
-        tab_vip = get_view_by_id(d, 'tabVIP')
-        # 等待tabVIP元素加载完成
+        # 等待 WebView tabVIP元素加载完成
         wait_view_appear_by_view_id(d, 'tabVIP')
         # 截图
-        screen_shot(d, 'checkin_vip', 10)
-        # 获取有效期区域子元素
-        get_view_info(tab_vip)
+        screen_shot(d, 'checkin_vip', 30)
         # 得到所有TextView
         no_view = get_view_by_class_name(d, 'android.widget.TextView', 1)
         date_view = get_view_by_class_name(d, 'android.widget.TextView', 2)

@@ -95,7 +95,21 @@ def click_view(view: u2.UiObject):
         sys.exit(-1)
 
 
-def click_view_by_x_y(device: u2.Device, x: int, y: int):
+def click_screen_center(device: u2.Device):
+    """
+    点击屏幕中央
+    """
+    click_screen_by_x_y(device, device.window_size()[0] / 2, device.window_size()[1] / 2)
+
+
+def click_screen_by_x_y(device: u2.Device, x: int, y: int):
+    """
+    点击屏幕指定坐标 (x,y)
+    :param device:
+    :param x:
+    :param y:
+    :return:
+    """
     try:
         print('点击坐标:', x, y)
         delay(1)

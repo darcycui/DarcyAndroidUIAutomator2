@@ -1,6 +1,6 @@
 import unittest
 
-from message_tg.call import call_voice, call_video, call_end, call_rate_close, call_answer_video, call_answer_voice
+from message_tg.helper.call_helper import call_voice, call_video, call_end, call_rate_close, call_answer_video, call_answer_voice
 from tests.data.TestData import DEVICE_ID
 from utils.uiautomator2.connect import connect_device
 

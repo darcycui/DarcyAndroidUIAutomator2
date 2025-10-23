@@ -1,42 +1,25 @@
-import uiautomator2 as u2
-
-from utils.uiautomator2.connect import connect_device
-
-
+from message_signal.bean.SignalBean import SignalBean
+from message_signal.config.global_config_sig import SIGNAL_DEVICE_ID_IN, SIGNAL_COUNTRY_NUMBER_IN, \
+    SIGNAL_PHONE_NUMBER_IN, SIGNAL_CHAT_USER_NAME_IN, SIGNAL_ROOT_NAME_IN, SIGNAL_DEVICE_ID_OUT, \
+    SIGNAL_COUNTRY_NUMBER_OUT, SIGNAL_PHONE_NUMBER_OUT, SIGNAL_CHAT_USER_NAME_OUT, SIGNAL_ROOT_NAME_OUT, \
+    SIGNAL_USER_NAME_IN, SIGNAL_USER_NAME_OUT
+from message_signal.entry.signal_pipeline import start_chat_pair_signal
 
 if __name__ == '__main__':
-    print('message_signal send message...')
-    # try:
-    #     print('发送消息 start+++')
-    #     # 连接设备
-    #     in_device: u2.Device = connect_device(DEVICE_ID_IN)
-    #     out_device: u2.Device = connect_device(DEVICE_ID_OUT)
-    #     print('---------------------------------------------登录:开始------------------------------------------------')
-    #     # 登录准备
-    #     prepare_login(in_device, PACKAGE_NAME)
-    #     prepare_login(out_device, PACKAGE_NAME)
-    #     # 登录
-    #     login(in_device, PACKAGE_NAME, PACKAGE_NAME_WEB, PACKAGE_NAME_BETA, COUNTRY_NUMBER_IN, PHONE_NUMBER_IN)
-    #     login(out_device, PACKAGE_NAME, PACKAGE_NAME_WEB, PACKAGE_NAME_BETA, COUNTRY_NUMBER_OUT, PHONE_NUMBER_OUT)
-    #     print('---------------------------------------------登录:结束------------------------------------------------')
-    #     delay(3)
-    #     print('-------------------------------------------普通聊天:开始----------------------------------------------')
-    #     # 聊天准备
-    #     prepare(in_device, PACKAGE_NAME)
-    #     prepare(out_device, PACKAGE_NAME)
-    #     start_chat(in_device, CHAT_USER_NAME_IN)
-    #     start_chat(out_device, CHAT_USER_NAME_OUT)
-    #     # 清空历史
-    #     clear_history(in_device)
-    #     clear_history(out_device)
-    #     # 聊天
-    #     chat(in_device, out_device, 'Normal')
-    #     delay(3)
-    #     print('-------------------------------------------普通聊天:结束----------------------------------------------')
-    #     delay(3)
-    #     # 息屏
-    #     # turn_screen_off(d)
-    #     print('发送消息成功')
-    # except Exception as e:
-    #     print(f'发送消息失败:{e}')
-    #     sys.exit(-1)
+    user_in = SignalBean(
+        device_id=SIGNAL_DEVICE_ID_IN,
+        country_number=SIGNAL_COUNTRY_NUMBER_IN,
+        phone_number=SIGNAL_PHONE_NUMBER_IN,
+        chat_user_name=SIGNAL_CHAT_USER_NAME_IN,
+        root_name=SIGNAL_ROOT_NAME_IN,
+        user_name=SIGNAL_USER_NAME_IN)
+
+    user_out = SignalBean(
+        device_id=SIGNAL_DEVICE_ID_OUT,
+        country_number=SIGNAL_COUNTRY_NUMBER_OUT,
+        phone_number=SIGNAL_PHONE_NUMBER_OUT,
+        chat_user_name=SIGNAL_CHAT_USER_NAME_OUT,
+        root_name=SIGNAL_ROOT_NAME_OUT,
+        user_name=SIGNAL_USER_NAME_OUT)
+
+    start_chat_pair_signal(user_in, user_out)

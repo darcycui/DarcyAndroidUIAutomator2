@@ -7,7 +7,7 @@ from utils.uiautomator2.view_click import click_view_by_description, click_view_
 from utils.uiautomator2.view_exists import exists_by_id, exists_by_text
 
 
-def clear_history(device: u2.Device) -> bool:
+def clear_history_tg(device: u2.Device) -> bool:
     """清空聊天记录"""
     try:
         click_view_by_description(device, 'More options')

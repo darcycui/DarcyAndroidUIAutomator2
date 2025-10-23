@@ -2,11 +2,11 @@ import sys
 
 import uiautomator2 as u2
 
-from message_tg.goback import go_back
+from message_tg.helper.goback_helper import go_back
 from utils.date_time_util import delay
 from utils.uiautomator2.view_click import click_view
 from utils.uiautomator2.view_get import get_view_by_class_name
-from utils.uiautomator2.view_list_get import get_view_list_by_class_name, get_child_view_list_by_class_name
+from utils.uiautomator2.view_list_get import get_child_view_list_by_class_name
 
 
 def click_dialog_list(device: u2.Device, position: int = -1) -> bool:

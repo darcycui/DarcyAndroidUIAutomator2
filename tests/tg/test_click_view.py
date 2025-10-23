@@ -4,7 +4,7 @@ import uiautomator2 as u2
 
 from tests.data.TestData import DEVICE_ID
 from utils.uiautomator2.connect import connect_device
-from utils.uiautomator2.view_click import click_view_by_text, click_view_by_class_name, click_view_by_x_y, click_view, \
+from utils.uiautomator2.view_click import click_view_by_text, click_view_by_class_name, click_screen_by_x_y, click_view, \
     click_x_y
 from utils.uiautomator2.view_get import get_view_by_text
 from utils.uiautomator2.view_info import get_view_center_x, get_view_center_y, get_view_info
