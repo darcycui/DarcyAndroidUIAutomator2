@@ -11,11 +11,11 @@ from message_signal.helper.take_helper import send_take_image_signal, send_take_
 def chat_signal(device_in: u2.Device, device_out: u2.Device, user_in: SignalBean, user_out: SignalBean) -> bool:
     try:
         package_name: str = user_in.package_name
-        # # 文本消息
-        # send_text_signal(device_in, package_name, 'OnOnOn-1')
-        # send_text_signal(device_out, package_name, 'Come on baby-1.')
-        # # 发送消息 in-->out
-        # chat_once(device_in, device_out, user_in)
+        # 文本消息
+        send_text_signal(device_in, package_name, 'OnOnOn-1')
+        send_text_signal(device_out, package_name, 'Come on baby-1.')
+        # 发送消息 in-->out
+        chat_once(device_in, device_out, user_in)
 
         send_text_signal(device_out, package_name, 'OnOnOn-2')
         send_text_signal(device_in, package_name, 'Come on baby-2.')
