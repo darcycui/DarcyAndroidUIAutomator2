@@ -82,7 +82,7 @@ def phone_call(from_device, to_device):
 
 def start_chat_pair_tg(user_in: TGBean, user_out: TGBean):
     try:
-        print('发送消息 start+++')
+        print('tg 聊天开始 start+++')
         # 连接设备
         in_device: u2.Device = connect_device(user_in.device_id)
         out_device: u2.Device = connect_device(user_out.device_id)
@@ -125,7 +125,7 @@ def start_chat_pair_tg(user_in: TGBean, user_out: TGBean):
         print('--------------------------------------------PC解密:结束-----------------------------------------------')
         # 息屏
         # turn_screen_off(d)
-        print('发送消息成功')
+        print('tg 聊天结束')
     except Exception as e:
         print(f'发送消息失败:{e}')
         sys.exit(-1)

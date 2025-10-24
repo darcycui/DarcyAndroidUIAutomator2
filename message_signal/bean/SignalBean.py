@@ -1,6 +1,6 @@
 from bean.IUserBean import IUserBean
 from message_signal.config.global_config_sig import SIGNAL_PACKAGE_NAME
-from vip import package_name
+from kugou_vip import package_name
 
 
 class SignalBean(IUserBean):

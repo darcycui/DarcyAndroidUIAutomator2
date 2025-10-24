@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 def start_chat_pair_signal(user_in: SignalBean, user_out: SignalBean):
     try:
-        print('发送消息 start+++')
+        print('signal 聊天开始 start+++')
         # 连接设备
         in_device: u2.Device = connect_device(user_in.device_id)
         out_device: u2.Device = connect_device(user_out.device_id)
@@ -38,6 +38,7 @@ def start_chat_pair_signal(user_in: SignalBean, user_out: SignalBean):
         print('-------------------------------------------发送消息:开始----------------------------------------------')
         chat_signal(in_device, out_device, user_in, user_out)
         print('-------------------------------------------发送消息:结束----------------------------------------------')
+        print('signal 聊天结束')
     except Exception as e:
         logging.error('发生异常', e)
         exc_type, exc_value, exc_traceback = sys.exc_info()
