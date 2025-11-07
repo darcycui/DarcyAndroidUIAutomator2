@@ -26,7 +26,8 @@ def get_device_info(device: u2.Device) -> dict:
 
 
 def get_device_name(device: u2.Device) -> str:
-    return '设备名称:' + get_device_info(device)['productName']
+    info_map = get_device_info(device)
+    return f'设备名称: {info_map['productName']}'
 
 
 def get_device_sdk(device: u2.Device) -> int:

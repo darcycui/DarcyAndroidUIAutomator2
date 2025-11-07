@@ -6,5 +6,6 @@ echo 检测到当前目录为：%cd%
 echo send_message start...
 timeout /t 10 >nul
 call python .\send_message_tg.py
+call python .\install_manually_tg.py
 echo send_message finish！
 pause
