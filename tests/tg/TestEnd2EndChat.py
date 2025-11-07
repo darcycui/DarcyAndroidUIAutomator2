@@ -6,18 +6,18 @@ from message_tg.helper.chat_normal_helper import start_chat_tg
 from message_tg.helper.chat_secure_helper import secure_chat_on, secure_chat_off
 from message_tg.helper.send_helper import send_text_message
 from tests.data.TestData import DEVICE_ID, CHAT_USER_NAME, COUNTRY_NUMBER, PHONE_NUMBER, ROOT_NAME
+from tests.tg.base.BaseTGTest import BaseTGTest
 from utils.date_time_util import get_current_time
 from utils.uiautomator2.connect import connect_device, prepare
 
 
-class TestSecretChat(unittest.TestCase):
+class TestSecretChat(BaseTGTest):
     def setUp(self):
         """每个测试方法前运行"""
         print('setUp')
-        self.device = connect_device(DEVICE_ID)
-        self.assertIsNotNone(self.device, '设备连接失败')
-        self.user = TGBean(DEVICE_ID, COUNTRY_NUMBER, PHONE_NUMBER, CHAT_USER_NAME, ROOT_NAME)
-
+        super(TestSecretChat, self).setUp()
+        self.device = self.device_out_huawei
+        self.user = self.user_out_huawei
     def tearDown(self):
         """每个测试方法后运行"""
         print('tearDown')

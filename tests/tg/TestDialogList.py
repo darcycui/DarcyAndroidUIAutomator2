@@ -4,17 +4,19 @@ import uiautomator2 as u2
 
 from message_tg.bean.TGBean import TGBean
 from message_tg.helper.dialog_list_helper import click_dialog_list, click_dialog_list_with_position
+from message_tg.tg_factory import get_user_in_tg, get_user_out_huawei_tg
 from tests.data.TestData import DEVICE_ID, COUNTRY_NUMBER, PHONE_NUMBER, CHAT_USER_NAME, ROOT_NAME
+from tests.tg.base.BaseTGTest import BaseTGTest
 from utils.uiautomator2.connect import connect_device, prepare
 
 
-class TestDialogList(unittest.TestCase):
+class TestDialogList(BaseTGTest):
     def setUp(self):
         """每个测试方法前运行"""
         print("setUp")
-        self.device: u2.Device = connect_device(DEVICE_ID)
-        self.assertIsNotNone(self.device, "设备连接失败")
-        self.user = TGBean(DEVICE_ID, COUNTRY_NUMBER, PHONE_NUMBER, CHAT_USER_NAME, ROOT_NAME)
+        super(TestDialogList, self).setUp()
+        self.device = self.device_out_huawei
+        self.user = self.user_out_huawei
 
     def tearDown(self):
         """每个测试方法后运行"""

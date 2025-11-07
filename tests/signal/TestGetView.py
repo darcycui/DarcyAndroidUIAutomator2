@@ -1,10 +1,10 @@
-from tests.signal.base.base_test import BaseTest
+from tests.signal.base.BaseSignalTest import BaseSignalTest
 from utils.uiautomator2.view_get import get_view_by_id
 
 from utils.uiautomator2.view_info import get_view_info
 
 
-class GetView(BaseTest):
+class TestGetView(BaseSignalTest):
     def setUp(self):
         pass
 

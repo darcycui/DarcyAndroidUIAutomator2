@@ -1,8 +1,8 @@
 from message_signal.helper.login_helper import login_signal
-from tests.signal.base.base_test import BaseTest
+from tests.signal.base.BaseSignalTest import BaseSignalTest
 
 
-class LoginSignal(BaseTest):
+class TestLoginSignal(BaseSignalTest):
     def setUp(self):
         pass
 

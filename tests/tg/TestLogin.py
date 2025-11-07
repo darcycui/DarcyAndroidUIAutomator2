@@ -5,16 +5,16 @@ from message_tg.config.global_config_tg import TG_PERMISSIONS
 from message_tg.helper.login_helper import login_tg
 from tests.data.TestData import DEVICE_ID, COUNTRY_NUMBER, PHONE_NUMBER, \
     CHAT_USER_NAME, ROOT_NAME
+from tests.tg.base.BaseTGTest import BaseTGTest
 from utils.uiautomator2.connect import connect_device, prepare_login
 
 
-class TestLogin(unittest.TestCase):
+class TestLogin(BaseTGTest):
     def setUp(self):
         """每个测试方法前运行"""
-        self.device = connect_device(DEVICE_ID)
-        self.assertIsNotNone(self.device, '设备连接失败')
-        self.user = TGBean(DEVICE_ID, COUNTRY_NUMBER, PHONE_NUMBER, CHAT_USER_NAME, ROOT_NAME)
-
+        super(TestLogin, self).setUp()
+        self.device = self.device_out_huawei
+        self.user = self.user_out_huawei
     def tearDown(self):
         """每个测试方法后运行"""
         print("tearDown")

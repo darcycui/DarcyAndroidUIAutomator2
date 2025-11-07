@@ -6,7 +6,7 @@ from message_signal.factory.signal_factory import get_signal_in, get_signal_out,
 from utils.uiautomator2.connect import connect_device
 
 
-class BaseTest(unittest.TestCase):
+class BaseSignalTest(unittest.TestCase):
     def setUp(self):
         self.user_in = get_signal_in()
         self.user_out = get_signal_out()

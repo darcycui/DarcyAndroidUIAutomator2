@@ -10,7 +10,7 @@ from utils.uiautomator2.view_get import get_view_by_text
 from utils.uiautomator2.view_info import get_view_center_x, get_view_center_y, get_view_info
 
 
-class TestGetView(unittest.TestCase):
+class TestGetClickView(unittest.TestCase):
     def setUp(self):
         """每个测试方法前运行"""
         print("setUp")

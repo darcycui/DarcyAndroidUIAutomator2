@@ -6,7 +6,7 @@ from tests.data.TestData import DEVICE_ID, ROOT_NAME
 from utils.uiautomator2.connect import connect_device
 
 
-class TestImage(unittest.TestCase):
+class TestMedia(unittest.TestCase):
     def setUp(self):
         """每个测试方法前运行"""
         print('setUp')

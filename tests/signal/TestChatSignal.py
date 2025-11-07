@@ -1,8 +1,8 @@
 from message_signal.helper.chat_helper import chat_signal
-from tests.signal.base.base_test import BaseTest
+from tests.signal.base.BaseSignalTest import BaseSignalTest
 
 
-class ChatSignal(BaseTest):
+class TestChatSignal(BaseSignalTest):
     def setUp(self):
         pass
 

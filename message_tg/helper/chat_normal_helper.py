@@ -18,6 +18,7 @@ def start_chat_tg(device: u2.Device, user_bean: TGBean) -> bool:
         delay(2)
         # 点击联系人按钮
         click_view_by_text(device, 'Contacts')
+        delay(2)
         # 如果存在联系人则直接点击
         if exists_by_text(device, contact_name):
             print(f'存在联系人:{contact_name} 直接点击')
