@@ -19,7 +19,7 @@ def connect_device(device_id: str) -> u2.Device:
     # 打印出代码背后的HTTP请求
     # device.debug = True
     # 设置元素查找等待时间(默认20s)
-    device.implicitly_wait(10.0)
+    device.implicitly_wait(30.0)
     print('设备信息:', device.info)
     print(f'设备名称: {get_device_name(device)}')
     return device

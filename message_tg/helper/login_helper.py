@@ -55,8 +55,11 @@ def login_tg(
         click_view_by_text(device, 'Yes')
         # 等待页面切换到验证码页面
         delay(10)
-        wait_view_appear_by_text(device, 'Check your Telegram messages')
-        print('验证码已发送')
+        code_send_success = wait_view_appear_by_text(device, 'Check your Telegram messages')
+        if not code_send_success:
+            print('验证码发送失败')
+            sys.exit(-1)
+        print('验证码发送成功!')
         delay(3)
         # 打开.web app
         app_web_open(device, package_name_web_, 5)
@@ -80,6 +83,7 @@ def login_tg(
         # start_app(device, package_name)
 
         # 找到验证码输入框
+        delay(3)
         code_edit_text_list = get_view_list_by_class_name(device, 'android.widget.EditText')
         print('输入框个数-->', len(code_edit_text_list), '验证码位数-->', len(verify_code_numbers))
         if len(code_edit_text_list) <= 0 or len(code_edit_text_list) != len(verify_code_numbers):
