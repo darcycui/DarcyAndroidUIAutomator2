@@ -1,0 +1,1 @@
+Android自动化测试基于Google AndroidUIAutomator2 + Python
