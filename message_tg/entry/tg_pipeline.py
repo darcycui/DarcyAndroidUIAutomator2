@@ -13,6 +13,7 @@ from message_tg.helper.history_helper import clear_history_tg
 from message_tg.helper.login_helper import login_tg
 from message_tg.helper.send_helper import send_text_message, send_image, send_video, send_file
 from message_tg.helper.take_helper import send_take_image, send_take_video, send_take_audio, send_take_round_video
+from message_tg.screenshot_helper import tg_inspection_screenshot
 from pc_script import call_pc_powershell
 from utils.date_time_util import delay
 from utils.uiautomator2.connect import connect_device, prepare_login, prepare
@@ -28,9 +29,21 @@ def chat_tg(in_device_: u2.Device, out_device_: u2.Device, user_in: TGBean, user
     # 发送文本
     send_text_message(in_device_, f'Chat Message From In-{type_}')
     send_text_message(out_device_, f'Chat Message From Out-{type_}')
+    if type_ == 'Normal':
+        tg_inspection_screenshot(in_device_) # 截图
+        delay(3)
+        tg_inspection_screenshot(out_device_) # 截图
     # 发送图片、视频、文件、拍照、拍摄全屏视频、拍摄圆形视频
     send_image_video_file_audio(in_device_, user_in.root_name)
+    if type_ == 'Normal':
+        tg_inspection_screenshot(in_device_) # 截图
+        delay(3)
+        tg_inspection_screenshot(out_device_) # 截图
     send_image_video_file_audio(out_device_, user_out.root_name)
+    if type_ == 'Normal':
+        tg_inspection_screenshot(in_device_) # 截图
+        delay(3)
+        tg_inspection_screenshot(out_device_) # 截图
     # 等待消息发送完成
     print('延迟 60s 等待消息发送完成')
     delay(60)
@@ -66,7 +79,10 @@ def send_image_video_file_audio(device: u2.Device, root_name: str):
 
 def video_call(from_device, to_device):
     call_video(from_device)
+    tg_inspection_screenshot(from_device) # 截图
     call_answer_video(to_device)
+    delay(3)
+    tg_inspection_screenshot(to_device) # 截图
     call_end(from_device)
     call_rate_close(from_device)
     call_rate_close(to_device)
@@ -74,7 +90,10 @@ def video_call(from_device, to_device):
 
 def phone_call(from_device, to_device):
     call_voice(from_device)
+    tg_inspection_screenshot(from_device) # 截图
     call_answer_voice(to_device)
+    delay(3)
+    tg_inspection_screenshot(to_device) # 截图
     call_end(from_device)
     call_rate_close(from_device)
     call_rate_close(to_device)
@@ -86,29 +105,29 @@ def start_chat_pair_tg(user_in: TGBean, user_out: TGBean):
         # 连接设备
         in_device: u2.Device = connect_device(user_in.device_id)
         out_device: u2.Device = connect_device(user_out.device_id)
-        print('---------------------------------------------登录:开始------------------------------------------------')
-        # 登录准备
-        prepare_login(in_device, user_in, TG_PERMISSIONS)
-        prepare_login(out_device, user_out, TG_PERMISSIONS)
-        # 登录
-        login_tg(in_device, user_in)
-        login_tg(out_device, user_out)
-        print('---------------------------------------------登录:结束------------------------------------------------')
-        delay(3)
-        print('-------------------------------------------普通聊天:开始----------------------------------------------')
-        # 聊天准备
-        prepare(in_device, user_in)
-        prepare(out_device, user_out)
-        start_chat_tg(in_device, user_in)
-        start_chat_tg(out_device, user_out)
-        # 清空历史
-        clear_history_tg(in_device)
-        clear_history_tg(out_device)
-        # 聊天
-        chat_tg(in_device, out_device, user_in, user_out, type_='Normal')
-        delay(3)
-        print('-------------------------------------------普通聊天:结束----------------------------------------------')
-        delay(3)
+        # print('---------------------------------------------登录:开始------------------------------------------------')
+        # # 登录准备
+        # prepare_login(in_device, user_in, TG_PERMISSIONS)
+        # prepare_login(out_device, user_out, TG_PERMISSIONS)
+        # # 登录
+        # login_tg(in_device, user_in)
+        # login_tg(out_device, user_out)
+        # print('---------------------------------------------登录:结束------------------------------------------------')
+        # delay(3)
+        # print('-------------------------------------------普通聊天:开始----------------------------------------------')
+        # # 聊天准备
+        # prepare(in_device, user_in)
+        # prepare(out_device, user_out)
+        # start_chat_tg(in_device, user_in)
+        # start_chat_tg(out_device, user_out)
+        # # 清空历史
+        # clear_history_tg(in_device)
+        # clear_history_tg(out_device)
+        # # 聊天
+        # chat_tg(in_device, out_device, user_in, user_out, type_='Normal')
+        # delay(3)
+        # print('-------------------------------------------普通聊天:结束----------------------------------------------')
+        # delay(3)
         print('-------------------------------------------私密聊天:开始----------------------------------------------')
         # 聊天准备
         prepare(in_device, user_in)

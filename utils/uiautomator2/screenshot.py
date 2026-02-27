@@ -9,8 +9,9 @@ from utils.file_util import check_file_exists
 
 def screen_shot(device: u2.Device, sub_folder_name: str, file_name: str, delay_seconds: int):
     print(f'等待 {delay_seconds}s 后截图')
-    # delay(delay_seconds)
-    delay(1)
+    if delay_seconds > 0:
+        delay(delay_seconds)
+    # delay(1)
     time_stamp = time.strftime('%Y%m%d_%H%M', time.localtime())
     # 检查文件夹是否存在
     if not os.path.exists('screen_shot'):

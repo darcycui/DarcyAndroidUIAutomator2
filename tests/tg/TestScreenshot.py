@@ -31,6 +31,6 @@ class TestWait(unittest.TestCase):
     def test_screenshot(self):
         """测试截图"""
         current_day = get_current_day()
-        file_path = screen_shot(self.device, f'tg_{current_day}-1', 'inspection', 2)
+        file_path = screen_shot(self.device, f'tg_{current_day}', 'inspection', 1)
         file_exist = check_file_exists(file_path)
         self.assertTrue(file_exist, '截图失败')

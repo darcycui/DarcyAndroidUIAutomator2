@@ -4,6 +4,7 @@ import uiautomator2 as u2
 
 from message_tg.helper.app_web_helper import app_web_prepare, app_web_open, app_web_close
 from message_tg.bean.TGBean import TGBean
+from message_tg.screenshot_helper import tg_inspection_screenshot
 from utils.date_time_util import delay
 from utils.string_util import split_verification_code
 from utils.uiautomator2.apps import start_app, stop_app
@@ -49,6 +50,7 @@ def login_tg(
             sys.exit(-1)
         input_text(device, country_edit_text, country_number_)
         input_text(device, phone_edit_text, phone_number_)
+        tg_inspection_screenshot(device) # 截图
         # 点击箭头
         click_view_by_description(device, 'Done')
         # 点击Yes
@@ -85,13 +87,13 @@ def login_tg(
         # 找到验证码输入框
         delay(3)
         code_edit_text_list = get_view_list_by_class_name(device, 'android.widget.EditText')
-        print('输入框个数-->', len(code_edit_text_list), '验证码位数-->', len(verify_code_numbers))
+        print('输入框个数:', len(code_edit_text_list), '验证码位数:', len(verify_code_numbers))
         if len(code_edit_text_list) <= 0 or len(code_edit_text_list) != len(verify_code_numbers):
             print('输入框个数与验证码位数不一致')
             sys.exit(-1)
         for i, item in enumerate(verify_code_numbers):
             input_text(device, code_edit_text_list[i], item)
-
+        tg_inspection_screenshot(device) # 截图
         delay(10)
         # 点击OK 二次密码提示
         if exists_by_text(device, 'OK'):
