@@ -3,6 +3,7 @@ import time
 
 import uiautomator2 as u2
 
+from message_tg.config.global_config_tg import APK_INSTALL_FAIL_FOLDER
 from utils.uiautomator2.apps import start_app, stop_app
 from utils.uiautomator2.device import get_device_name
 from utils.uiautomator2.screenshot import screen_shot
@@ -58,5 +59,5 @@ def install_from_file_explorer(
         print(f'从文件浏览器安装apk失败: {device_name} {apk_name}')
         folder = APK_INSTALL_FAIL_FOLDER
         file = f'{folder}/{device_name}_{apk_name}_install_fail.png'
-        screen_shot(device, 'install_from_file_explorer_fail', 3)
+        screen_shot(device, 'install_apk', 'install_from_file_explorer_fail', 3)
         sys.exit(-1)

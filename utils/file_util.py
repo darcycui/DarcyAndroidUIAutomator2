@@ -48,3 +48,16 @@ def get_latest_file_in_folder(folder_path: str) -> Optional[str]:
 
     # 返回完整文件路径
     return os.path.join(folder_path, latest_file) if latest_file else None
+
+
+def check_file_exists(file_path: str) -> bool:
+    if file_path is None or file_path == '':
+        return False
+    return os.path.exists(file_path)
+
+
+def create_folders(folder_path: str) -> bool:
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path, exist_ok=True)
+        return True
+    return True

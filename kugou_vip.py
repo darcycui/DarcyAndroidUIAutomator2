@@ -48,7 +48,7 @@ if __name__ == '__main__':
         # 等待 WebView tabVIP元素加载完成
         wait_view_appear_by_view_id(d, 'tabVIP')
         # 截图
-        screen_shot(d, 'checkin_vip', 30)
+        screen_shot(d, 'kugou','checkin_vip', 30)
         # 得到所有TextView
         no_view = get_view_by_class_name(d, 'android.widget.TextView', 1)
         date_view = get_view_by_class_name(d, 'android.widget.TextView', 2)
